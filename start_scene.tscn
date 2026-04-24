@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1vcms5yvwl36"]
 
-[ext_resource type="Script" uid="uid://bobwimx0u6bq4" path="res://script/character_body_2d.gd" id="1_mbe3m"]
+[ext_resource type="Script" uid="uid://bobwimx0u6bq4" path="res://Scripts/character_body_2d.gd" id="1_mbe3m"]
 
 [node name="StartScene" type="Node2D" unique_id=770597738]
 
