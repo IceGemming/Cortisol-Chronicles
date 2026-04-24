@@ -19,6 +19,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kgrps"]
+radius = 12.0
+height = 32.0
 
 [node name="Game1" type="Node2D" unique_id=1622305917]
 
@@ -30,5 +32,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ov8li")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=205517189]
-position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_kgrps")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1761083027]
+zoom = Vector2(2, 2)
