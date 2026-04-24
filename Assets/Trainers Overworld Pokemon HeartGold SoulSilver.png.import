@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p7m5x4bwwomo"
-path="res://.godot/imported/sprites.png-7cb4861dd5aae9558fa8069a6dbc20fc.ctex"
+uid="uid://drj1oa8ey3g1d"
+path="res://.godot/imported/Trainers Overworld Pokemon HeartGold SoulSilver.png-7bd0609adf30966cb3bf6fc8f71882ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites.png"
-dest_files=["res://.godot/imported/sprites.png-7cb4861dd5aae9558fa8069a6dbc20fc.ctex"]
+source_file="res://Assets/Trainers Overworld Pokemon HeartGold SoulSilver.png"
+dest_files=["res://.godot/imported/Trainers Overworld Pokemon HeartGold SoulSilver.png-7bd0609adf30966cb3bf6fc8f71882ff.ctex"]
 
 [params]
 
