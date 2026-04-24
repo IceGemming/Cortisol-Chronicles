@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bmt8s1brl6tnp"]
 
+[ext_resource type="Script" uid="uid://bobwimx0u6bq4" path="res://Scripts/character_body_2d.gd" id="1_7qfw5"]
 [ext_resource type="Texture2D" uid="uid://drj1oa8ey3g1d" path="res://Assets/Trainers Overworld Pokemon HeartGold SoulSilver.png" id="1_kgrps"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qfw5"]
@@ -17,10 +18,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kgrps"]
+
 [node name="Game1" type="Node2D" unique_id=1622305917]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=217065021]
+script = ExtResource("1_7qfw5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1727245041]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ov8li")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=205517189]
+position = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_kgrps")

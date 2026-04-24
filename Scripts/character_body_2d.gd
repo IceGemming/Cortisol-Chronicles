@@ -4,10 +4,11 @@ extends CharacterBody2D
 @export var speed: float = 250.0
 @export var deadzone: float = 0.2
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 # @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 func _physics_process(_delta: float) -> void:
+	print("X: ", Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X), " Y: ", Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y))
 	var input_dir := Vector2.ZERO
 	
 	# Read raw analog stick data for the specific controller ID
