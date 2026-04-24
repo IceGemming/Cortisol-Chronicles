@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://b1vcms5yvwl36"]
 
-[ext_resource type="Script" uid="uid://bobwimx0u6bq4" path="res://Scripts/character_body_2d.gd" id="1_mbe3m"]
-
 [node name="StartScene" type="Node2D" unique_id=770597738]
 
 [node name="Button" type="Button" parent="." unique_id=1204794554]
@@ -22,8 +20,3 @@ offset_right = 438.0
 offset_bottom = 202.0
 scale = Vector2(4, 4)
 text = "Cortisol Chronicles"
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1176864782]
-script = ExtResource("1_mbe3m")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1930815176]

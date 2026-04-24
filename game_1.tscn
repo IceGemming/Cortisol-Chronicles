@@ -1,3 +1,26 @@
 [gd_scene format=3 uid="uid://bmt8s1brl6tnp"]
 
+[ext_resource type="Texture2D" uid="uid://drj1oa8ey3g1d" path="res://Assets/Trainers Overworld Pokemon HeartGold SoulSilver.png" id="1_kgrps"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qfw5"]
+atlas = ExtResource("1_kgrps")
+region = Rect2(0, 0, 29, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ov8li"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qfw5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Game1" type="Node2D" unique_id=1622305917]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=217065021]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1727245041]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ov8li")
