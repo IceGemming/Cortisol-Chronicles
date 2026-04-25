@@ -145,9 +145,11 @@ script = ExtResource("1_7qfw5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player 1" unique_id=1727245041]
 texture_filter = 1
-scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_ov8li")
 animation = &"walk_left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player 1" unique_id=2111155600]
+shape = SubResource("CapsuleShape2D_kgrps")
 
 [node name="Player 2" type="CharacterBody2D" parent="." unique_id=913158419 groups=["players"]]
 position = Vector2(121, -1)
@@ -161,5 +163,3 @@ animation = &"walk_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player 2" unique_id=1899720925]
 shape = SubResource("CapsuleShape2D_kgrps")
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1761083027]
-zoom = Vector2(2, 2)
