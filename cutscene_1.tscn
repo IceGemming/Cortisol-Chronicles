@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cs1tscn000001"]
+
+[ext_resource type="Script" uid="uid://c1scene0000001" path="res://Scripts/cutscene_1.gd" id="1_cs1"]
+
+[node name="Cutscene1" type="Node"]
+script = ExtResource("1_cs1")
