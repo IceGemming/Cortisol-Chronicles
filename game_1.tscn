@@ -141,11 +141,12 @@ script = ExtResource("1_7qfw5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1727245041]
 texture_filter = 1
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_ov8li")
 animation = &"default_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=205517189]
 shape = SubResource("CapsuleShape2D_kgrps")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1761083027]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1761083027]
 zoom = Vector2(2, 2)

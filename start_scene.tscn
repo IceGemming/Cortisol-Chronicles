@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b1vcms5yvwl36"]
 
 [ext_resource type="Script" uid="uid://l60y4r4jdt0m" path="res://start_scene.gd" id="1_mbe3m"]
+[ext_resource type="Texture2D" uid="uid://ukmbin1mmkvg" path="res://Assets/cursor.png" id="2_f1a2b"]
 
 [node name="StartScene" type="Node2D" unique_id=770597738]
 script = ExtResource("1_mbe3m")
@@ -23,5 +24,11 @@ offset_right = 438.0
 offset_bottom = 202.0
 scale = Vector2(4, 4)
 text = "Cortisol Chronicles"
+
+[node name="CursorLayer" type="CanvasLayer" parent="." unique_id=423456789]
+
+[node name="CursorSprite" type="Sprite2D" parent="CursorLayer" unique_id=423456790]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_f1a2b")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
