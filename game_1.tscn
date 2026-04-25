@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmt8s1brl6tnp"]
 
 [ext_resource type="Script" uid="uid://bobwimx0u6bq4" path="res://Scripts/character_body_2d.gd" id="1_7qfw5"]
+[ext_resource type="Script" uid="uid://cshfah8ns3ngv" path="res://Scripts/camera_2d.gd" id="1_ov8li"]
 [ext_resource type="Texture2D" uid="uid://byj7n22ffghky" path="res://Assets/boy1.png" id="2_7qfw5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ov8li"]
@@ -131,21 +132,34 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kgrps"]
-radius = 12.0
-height = 32.0
+radius = 45.0
+height = 138.0
 
 [node name="Game1" type="Node2D" unique_id=1622305917]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=217065021]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=910279539]
+script = ExtResource("1_ov8li")
+
+[node name="Player 1" type="CharacterBody2D" parent="." unique_id=217065021 groups=["players"]]
 script = ExtResource("1_7qfw5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1727245041]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player 1" unique_id=1727245041]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ov8li")
-animation = &"default_down"
+animation = &"walk_left"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=205517189]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player 1" unique_id=205517189]
 shape = SubResource("CapsuleShape2D_kgrps")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1761083027]
-zoom = Vector2(2, 2)
+[node name="Player 2" type="CharacterBody2D" parent="." unique_id=913158419 groups=["players"]]
+position = Vector2(121, -1)
+script = ExtResource("1_7qfw5")
+device_id = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player 2" unique_id=1604849997]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ov8li")
+animation = &"walk_left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player 2" unique_id=1899720925]
+shape = SubResource("CapsuleShape2D_kgrps")
