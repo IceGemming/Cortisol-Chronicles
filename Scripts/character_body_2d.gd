@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var deadzone: float = 0.2
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-# @onready var anim_player: AnimationPlayer = $AnimationPlayer
+
 
 func _physics_process(_delta: float) -> void:
 	print("X: ", Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X), " Y: ", Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y))
@@ -26,17 +26,14 @@ func _physics_process(_delta: float) -> void:
 
 func _update_spritesheet(direction: Vector2) -> void:
 	if direction == Vector2.ZERO:
-		# anim_player.play("idle")
-		return
-		
-	# Basic horizontal flip
-	if direction.x != 0:
-		sprite.flip_h = direction.x < 0
-
+		sprite.play("default_down")
 	# AnimationPlayer logic for a 4-direction spritesheet
-	# if abs(direction.x) > abs(direction.y):
-	#     anim_player.play("walk_side")
-	# elif direction.y < 0:
-	#     anim_player.play("walk_up")
-	# else:
-	#     anim_player.play("walk_down")
+	if abs(direction.x) > abs(direction.y):
+		if direction.x < 0:
+			sprite.play("walk_left")
+		elif direction.x > 0:
+			sprite.play("walk_right")
+	elif direction.y < 0:
+		sprite.play("walk_up")
+	else:
+		sprite.play("walk_down")
