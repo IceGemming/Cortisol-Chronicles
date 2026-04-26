@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bobwimx0u6bq4" path="res://Scripts/character_body_2d.gd" id="1_7qfw5"]
 [ext_resource type="Script" uid="uid://cshfah8ns3ngv" path="res://Scripts/camera_2d.gd" id="1_ov8li"]
 [ext_resource type="Texture2D" uid="uid://byj7n22ffghky" path="res://Assets/boy1.png" id="2_7qfw5"]
+[ext_resource type="Texture2D" uid="uid://dkboqdltdix6y" path="res://Assets/MV-Earth.jpg" id="2_fks45"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ov8li"]
 atlas = ExtResource("2_7qfw5")
@@ -139,6 +140,12 @@ height = 138.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=910279539]
 script = ExtResource("1_ov8li")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1627297284]
+z_index = -1
+position = Vector2(-3146, 2692.0002)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_fks45")
 
 [node name="Player 1" type="CharacterBody2D" parent="." unique_id=217065021 groups=["players"]]
 script = ExtResource("1_7qfw5")

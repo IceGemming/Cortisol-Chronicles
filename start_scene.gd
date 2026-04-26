@@ -53,4 +53,4 @@ func _update_button_state() -> void:
 			start_button.grab_focus()
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://game_1_multi.tscn")
+	get_tree().change_scene_to_file("res://game_1.tscn")
