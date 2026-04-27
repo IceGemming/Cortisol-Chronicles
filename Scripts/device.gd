@@ -1,39 +1,41 @@
-# Device.gd
-# Attach to a Node2D that represents one player's falling device.
-# Children:
-#   - Sprite2D (or AnimatedSprite2D) for the visual
-#   - Label showing player name + tilt angle
-#   - CollisionShape2D if using physics
-
 extends Node2D
 
 signal device_failed(player_index: int)
 signal device_survived(player_index: int)
 
-@export var player_index: int = 0        # 0–4
-@export var controller_device_id: int = 0  # joypad device index (0–4)
-@export var fall_speed := 60.0          # pixels per second downward
-@export var max_tilt := 50.0            # degrees — fail threshold
-@export var tilt_damping := 0.85        # how quickly tilt settles
-@export var player_correction_strength := 90.0  # degrees/sec player can apply
-@export var wind_tilt_rate := 35.0      # degrees/sec wind adds when active
+@export var player_index: int = 0
+@export var controller_device_id: int = 0
+@export var fall_speed := 120.0
+@export var max_tilt := 40.0
+@export var tilt_damping := 0.85
+@export var player_correction_strength := 90.0
+@export var wind_tilt_rate := 35.0
 
-var tilt_angle := 0.0          # current rotation in degrees
-var wind_direction := 0.0      # +1 right, -1 left, 0 calm
+var tilt_angle := 0.0
+var wind_direction := 0.0
 var alive := true
 var landed := false
+var falling := false           # controlled by EggDropGame
 
-# Ground Y — set by EggDropGame after positioning
-var ground_y := 800.0
-# Green zone range (screen X) — set by EggDropGame
+var ground_y := 700.0
 var green_zone_x_min := 0.0
 var green_zone_x_max := 0.0
+
+# Hover bob effect while waiting
+var hover_offset := 0.0
+var hover_speed := 1.5
+var hover_amplitude := 6.0
+var base_y := 0.0
+var hover_time := 0.0
 
 @onready var label: Label = $Label
 @onready var sprite: Node2D = $Sprite2D
 
 func _ready():
+	base_y = position.y
 	label.text = "P%d" % (player_index + 1)
+	# Stagger the hover phase so they don't all bob in sync
+	hover_time = player_index * 0.4
 
 func apply_wind(direction: float):
 	wind_direction = direction
@@ -42,50 +44,55 @@ func _process(delta: float):
 	if not alive or landed:
 		return
 
-	# --- Fall ---
-	position.y += fall_speed * delta
+	# --- Phase 1: floating --- 
+	if not falling:
+		hover_time += delta
+		hover_offset = sin(hover_time * hover_speed) * hover_amplitude
+		position.y = base_y + hover_offset
 
-	# --- Wind pushes tilt ---
+	# --- Phase 2: falling ---
+	else:
+		position.y += fall_speed * delta
+
+	# --- Wind pushes tilt (always active) ---
 	tilt_angle += wind_direction * wind_tilt_rate * delta
 
-	# --- Player counteracts with left joystick X axis ---
-	# InputMap axis 0 = left stick horizontal on most controllers
+	# --- Player corrects with left joystick ---
 	var joy_x := Input.get_joy_axis(controller_device_id, JOY_AXIS_LEFT_X)
-	# Dead zone
 	if abs(joy_x) < 0.15:
 		joy_x = 0.0
-
 	tilt_angle -= joy_x * player_correction_strength * delta
 
-	# --- Natural damping toward 0 when no input ---
+	# --- Damping toward upright when no input and no wind ---
 	if abs(joy_x) < 0.15 and wind_direction == 0.0:
 		tilt_angle = lerp(tilt_angle, 0.0, 1.0 - tilt_damping)
 
-	# --- Apply rotation visually ---
+	# --- Clamp and apply visual rotation ---
 	rotation_degrees = tilt_angle
+
+	# --- Update label ---
 	label.text = "P%d  %.1f°" % [player_index + 1, abs(tilt_angle)]
 
-	# --- Fail check ---
+	# --- Fail if tilted too far ---
 	if abs(tilt_angle) >= max_tilt:
 		_fail()
 		return
 
-	# --- Landing check ---
-	if position.y >= ground_y:
+	# --- Land check (only during fall phase) ---
+	if falling and position.y >= ground_y:
 		_land()
 
 func _fail():
 	alive = false
-	modulate = Color(1, 0.3, 0.3)  # flash red
+	modulate = Color(1, 0.3, 0.3)
 	label.text = "P%d  FELL!" % (player_index + 1)
 	emit_signal("device_failed", player_index)
 
 func _land():
 	landed = true
 	fall_speed = 0
-	# Check if within green zone
 	if position.x >= green_zone_x_min and position.x <= green_zone_x_max:
-		modulate = Color(0.3, 1, 0.4)  # green = survived
+		modulate = Color(0.3, 1, 0.4)
 		label.text = "P%d  SAFE!" % (player_index + 1)
 		emit_signal("device_survived", player_index)
 	else:

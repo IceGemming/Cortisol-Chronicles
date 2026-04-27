@@ -11,6 +11,7 @@ signal wind_changed(direction: float)
 @export var max_interval := 5.0
 @export var wind_strength := 200.0  # pixels/sec of angular push
 
+var last_direction := 1.0
 var current_direction := 1.0
 @onready var timer := $WindTimer
 
@@ -22,7 +23,8 @@ func _ready():
 func _on_wind_timer_timeout() -> void:
 	print('time')
 	# Randomly flip or keep direction
-	current_direction = 1.0 if randf() > 0.5 else -1.0
+	current_direction = 1.0 if last_direction==-1.0 else -1.0
+	last_direction = current_direction
 	emit_signal("wind_changed", current_direction)
 	timer.wait_time = randf_range(min_interval, max_interval)
 	timer.start()

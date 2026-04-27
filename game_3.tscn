@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://ttdog2wuyd8g" path="res://Scripts/game_3.gd" id="1_ei5hl"]
 [ext_resource type="Script" uid="uid://bstb4g6wh8ba" path="res://Scripts/wind_manager.gd" id="2_oh0d0"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ei5hl"]
+font_size = 48
+
 [node name="Game3" type="Node2D" unique_id=1946020976]
 script = ExtResource("1_ei5hl")
 
@@ -26,6 +29,13 @@ offset_bottom = 23.0
 [node name="Camera2D" type="Camera2D" parent="." unique_id=661552560]
 position = Vector2(576, 322)
 zoom = Vector2(0.7, 0.7)
+
+[node name="TimerLabel" type="Label" parent="." unique_id=904749206]
+offset_left = -233.0
+offset_top = -131.0
+offset_right = -122.0
+offset_bottom = -74.0
+label_settings = SubResource("LabelSettings_ei5hl")
 
 [connection signal="wind_changed" from="WindManager" to="." method="_on_wind_changed"]
 [connection signal="timeout" from="WindManager/WindTimer" to="WindManager" method="_on_wind_timer_timeout"]
