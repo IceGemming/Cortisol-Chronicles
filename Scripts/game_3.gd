@@ -47,7 +47,6 @@ func _ready():
 		devices.append(device)
 
 	_spawn_green_zones()
-	wind_manager.wind_changed.connect(_on_wind_changed)
 
 func _process(delta: float):
 	if game_over:
@@ -121,7 +120,7 @@ func _finish():
 		summary += "P%d: %s\n" % [i + 1, outcome.to_upper()]
 	result_label.text = summary
 	await get_tree().create_timer(3.0).timeout
-	get_tree().change_scene_to_file("res://scenes/Scene4.tscn")
+	get_tree().change_scene_to_file("res://cutscene_4.tscn")
 
 func _spawn_green_zones():
 	for i in PLAYER_COUNT:

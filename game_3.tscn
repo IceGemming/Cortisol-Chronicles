@@ -23,8 +23,9 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="ResultLabel" type="Label" parent="." unique_id=401964565]
+offset_top = 57.0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 80.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=661552560]
 position = Vector2(576, 322)
