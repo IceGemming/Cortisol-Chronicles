@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ttdog2wuyd8g" path="res://Scripts/game_3.gd" id="1_ei5hl"]
 [ext_resource type="Script" uid="uid://bstb4g6wh8ba" path="res://Scripts/wind_manager.gd" id="2_oh0d0"]
+[ext_resource type="Texture2D" uid="uid://dttkrhjk33hqd" path="res://Assets/sky.jpg" id="3_oh0d0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ei5hl"]
 font_size = 48
@@ -15,8 +16,8 @@ script = ExtResource("2_oh0d0")
 [node name="WindTimer" type="Timer" parent="WindManager" unique_id=1587419784]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=737525622]
-
-[node name="Ground" type="Sprite2D" parent="." unique_id=723011536]
+position = Vector2(613, 329)
+texture = ExtResource("3_oh0d0")
 
 [node name="WindLabel" type="Label" parent="." unique_id=1911252359]
 offset_right = 40.0

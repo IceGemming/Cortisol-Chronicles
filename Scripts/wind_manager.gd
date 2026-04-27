@@ -21,7 +21,6 @@ func _ready():
 
 
 func _on_wind_timer_timeout() -> void:
-	print('time')
 	# Randomly flip or keep direction
 	current_direction = 1.0 if last_direction==-1.0 else -1.0
 	last_direction = current_direction
