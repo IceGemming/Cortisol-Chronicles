@@ -12,8 +12,8 @@ signal device_survived(player_index: int)
 
 @export var player_index: int = 0        # 0–4
 @export var controller_device_id: int = 0  # joypad device index (0–4)
-@export var fall_speed := 120.0          # pixels per second downward
-@export var max_tilt := 40.0            # degrees — fail threshold
+@export var fall_speed := 60.0          # pixels per second downward
+@export var max_tilt := 50.0            # degrees — fail threshold
 @export var tilt_damping := 0.85        # how quickly tilt settles
 @export var player_correction_strength := 90.0  # degrees/sec player can apply
 @export var wind_tilt_rate := 35.0      # degrees/sec wind adds when active

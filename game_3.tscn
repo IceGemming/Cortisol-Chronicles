@@ -15,28 +15,6 @@ script = ExtResource("2_oh0d0")
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=723011536]
 
-[node name="GreenZones" type="Node2D" parent="." unique_id=899070118]
-
-[node name="ColorRect1" type="ColorRect" parent="GreenZones" unique_id=1187619011]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect2" type="ColorRect" parent="GreenZones" unique_id=2107069594]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect3" type="ColorRect" parent="GreenZones" unique_id=2065376602]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect4" type="ColorRect" parent="GreenZones" unique_id=2078915486]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect5" type="ColorRect" parent="GreenZones" unique_id=643132942]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="WindLabel" type="Label" parent="." unique_id=1911252359]
 offset_right = 40.0
 offset_bottom = 23.0
@@ -44,3 +22,10 @@ offset_bottom = 23.0
 [node name="ResultLabel" type="Label" parent="." unique_id=401964565]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=661552560]
+position = Vector2(576, 322)
+zoom = Vector2(0.7, 0.7)
+
+[connection signal="wind_changed" from="WindManager" to="." method="_on_wind_changed"]
+[connection signal="timeout" from="WindManager/WindTimer" to="WindManager" method="_on_wind_timer_timeout"]

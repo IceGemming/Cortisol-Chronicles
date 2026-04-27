@@ -44,8 +44,8 @@ func _ready():
 		device.device_failed.connect(_on_device_failed)
 		device.device_survived.connect(_on_device_survived)
 		devices.append(device)
-
-	wind_manager.wind_changed.connect(_on_wind_changed)
+	
+	_spawn_green_zones()
 
 func _on_wind_changed(direction: float):
 	var dir_text := "→ RIGHT" if direction > 0 else "← LEFT"
@@ -78,3 +78,14 @@ func _check_all_done():
 	GameManager.egg_drop_results = results
 	await get_tree().create_timer(3.0).timeout
 	get_tree().change_scene_to_file("res://cutscene_4.tscn")
+	
+func _spawn_green_zones():
+	for i in PLAYER_COUNT:
+		var zone := ColorRect.new()
+		zone.color = Color(0.2, 0.9, 0.3, 0.7)
+		zone.size = Vector2(GREEN_ZONE_WIDTH, 16)
+		zone.position = Vector2(
+			START_X + i * SPACING - GREEN_ZONE_HALF,
+			GROUND_Y
+		)
+		add_child(zone)
