@@ -55,7 +55,7 @@ func _spawn_ground_and_zones():
 	var ground_bar := ColorRect.new()
 	ground_bar.color = Color(0.3, 0.2, 0.1)   # brown ground color
 	ground_bar.size = Vector2(2000, 20)
-	ground_bar.position = Vector2(0, GROUND_HIDDEN_Y)
+	ground_bar.position = Vector2(-300, GROUND_HIDDEN_Y)
 	ground_bar.name = "GroundBar"
 	add_child(ground_bar)
 	green_zones.append(ground_bar)  # include in tween group
