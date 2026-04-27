@@ -1,3 +1,46 @@
 [gd_scene format=3 uid="uid://d1fqyjtm8osm6"]
 
+[ext_resource type="Script" uid="uid://ttdog2wuyd8g" path="res://Scripts/game_3.gd" id="1_ei5hl"]
+[ext_resource type="Script" uid="uid://bstb4g6wh8ba" path="res://Scripts/wind_manager.gd" id="2_oh0d0"]
+
 [node name="Game3" type="Node2D" unique_id=1946020976]
+script = ExtResource("1_ei5hl")
+
+[node name="WindManager" type="Node" parent="." unique_id=821983328]
+script = ExtResource("2_oh0d0")
+
+[node name="WindTimer" type="Timer" parent="WindManager" unique_id=1587419784]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=737525622]
+
+[node name="Ground" type="Sprite2D" parent="." unique_id=723011536]
+
+[node name="GreenZones" type="Node2D" parent="." unique_id=899070118]
+
+[node name="ColorRect1" type="ColorRect" parent="GreenZones" unique_id=1187619011]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="GreenZones" unique_id=2107069594]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect3" type="ColorRect" parent="GreenZones" unique_id=2065376602]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect4" type="ColorRect" parent="GreenZones" unique_id=2078915486]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect5" type="ColorRect" parent="GreenZones" unique_id=643132942]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WindLabel" type="Label" parent="." unique_id=1911252359]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ResultLabel" type="Label" parent="." unique_id=401964565]
+offset_right = 40.0
+offset_bottom = 23.0

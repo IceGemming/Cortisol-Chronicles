@@ -10,6 +10,7 @@ func _ready() -> void:
 	YEAR_LABEL    = "Junior Year"
 	YEAR_SUBTITLE = "Physics & The Egg Drop Project"
 	CHAPTER_NUM   = "3"
+	BG_TYPE       = "rooftop"
 
 	BG_COLOR     = Color(0.10, 0.06, 0.03, 1.0)
 	PANEL_COLOR  = Color(0.14, 0.08, 0.04, 1.0)

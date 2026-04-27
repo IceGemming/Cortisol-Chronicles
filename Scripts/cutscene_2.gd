@@ -10,6 +10,7 @@ func _ready() -> void:
 	YEAR_LABEL    = "Sophomore Year"
 	YEAR_SUBTITLE = "Pre-Calculus & The Surprise Diagnostic"
 	CHAPTER_NUM   = "2"
+	BG_TYPE       = "classroom"
 
 	BG_COLOR     = Color(0.04, 0.10, 0.10, 1.0)
 	PANEL_COLOR  = Color(0.05, 0.13, 0.14, 1.0)
