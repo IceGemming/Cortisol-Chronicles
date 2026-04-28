@@ -129,7 +129,7 @@ func _build_cursors():
 
 		var c := Cursor.new()
 		c.root = root
-		c.pos = root.position
+		c.pos = root.global_position
 		c.device_id = i
 		cursors.append(c)
 
@@ -221,7 +221,7 @@ func _process_cursors(delta: float):
 		c.pos += Vector2(joy_x, joy_y) * CURSOR_SPEED * delta
 		c.pos.x = clamp(c.pos.x, 0.0, screen_size.x)
 		c.pos.y = clamp(c.pos.y, 0.0, screen_size.y)
-		c.root.position = c.pos
+		c.root.global_position = c.pos
 
 		if Input.is_joy_button_pressed(c.device_id, JOY_BUTTON_A):
 			_try_click(c)
@@ -243,12 +243,13 @@ func _tick_tasks(delta: float):
 func _try_click(c: Cursor):
 	if send_unlocked and not sent:
 		var sb_rect := Rect2(send_button.global_position, send_button.size)
-		if sb_rect.has_point(c.pos):
+		if sb_rect.has_point(c.root.global_position):
 			_on_send_pressed()
 			return
+
 	for entry in active_tasks:
 		var btn_rect := Rect2(entry.button.global_position, entry.button.size)
-		if btn_rect.has_point(c.pos):
+		if btn_rect.has_point(c.root.global_position):
 			_on_task_pressed(entry)
 			return
 
