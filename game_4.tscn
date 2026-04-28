@@ -1,3 +1,88 @@
 [gd_scene format=3 uid="uid://f5jyml3ylmac"]
 
+[ext_resource type="Script" uid="uid://dp34qiabwqfqr" path="res://game_4.gd" id="1_q2dym"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q2dym"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_5p4t4"]
+font_size = 24
+
 [node name="Game4" type="Node2D" unique_id=1624815916]
+script = ExtResource("1_q2dym")
+
+[node name="TaskLayer" type="Node2D" parent="." unique_id=1172667779]
+
+[node name="CursorLayer" type="Node2D" parent="." unique_id=949294853]
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1375199493]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1496530998]
+
+[node name="Background" type="ColorRect" parent="UI" unique_id=1841837343]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 10.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17103916, 0.17103916, 0.17103916, 1)
+
+[node name="TopBar" type="HBoxContainer" parent="UI" unique_id=1629410673]
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="TimerLabel" type="Label" parent="UI/TopBar" unique_id=1802138249]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_q2dym")
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="UI/TopBar" unique_id=949363689]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_5p4t4")
+horizontal_alignment = 2
+
+[node name="MidnightLabel" type="Label" parent="UI" unique_id=42098237]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 65.0
+offset_bottom = 95.0
+grow_horizontal = 2
+horizontal_alignment = 1
+
+[node name="SendButton" type="Button" parent="UI" unique_id=324847298]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -80.0
+offset_right = 160.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Hit Send"
+
+[node name="ResultPanel" type="Panel" parent="UI" unique_id=1563166736]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0090001
+offset_right = 9.0
+offset_bottom = 0.16796875
+
+[node name="ResultLabel" type="Label" parent="UI/ResultPanel" unique_id=1491780620]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.994
+anchor_bottom = 1.0
+offset_right = -0.034057617
+offset_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
