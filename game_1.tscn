@@ -166,7 +166,7 @@ device_id = 1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player 2" unique_id=1604849997]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ov8li")
-animation = &"walk_left"
+animation = &"default_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player 2" unique_id=1899720925]
 shape = SubResource("CapsuleShape2D_kgrps")

@@ -8,8 +8,7 @@ extends Node
 var wire_score := 0          # how many wires connected before time ran out
 
 # --- Mini-Game 2: Function Frenzy ---
-var exam_score := 0          # number of correct answers
-var exam_total := 0          # total questions asked
+var minigame_2_history: Array = [] # Stores array of round dictionaries
 
 # --- Mini-Game 3: Egg Drop ---
 # Keyed by player_index (0–4) → "survived" or "failed"
@@ -58,6 +57,8 @@ func get_egg_survivors() -> int:
 		if egg_drop_results[key] == "survived":
 			count += 1
 	return count
+
+
 
 func get_summary() -> String:
 	return """

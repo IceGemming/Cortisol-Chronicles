@@ -31,6 +31,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 players=""
+minigame_manager=""
 
 [input]
 
@@ -72,3 +73,7 @@ r-joystick={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
