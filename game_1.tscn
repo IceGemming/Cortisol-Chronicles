@@ -11,6 +11,11 @@ normal = Vector2(640, 670)
 
 [node name="Main" type="Node2D" unique_id=118046849]
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1997395535]
+offset_right = 1177.0
+offset_bottom = 672.0
+color = Color(0.6133187, 0.22240785, 0.23249742, 1)
+
 [node name="GameManager" type="Node" parent="." unique_id=103208102]
 script = ExtResource("1_t3b1j")
 

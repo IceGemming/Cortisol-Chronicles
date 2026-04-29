@@ -17,7 +17,7 @@ extends CharacterBody2D
 var device_id: int = 0
 
 # PS5 button constant (Godot SDL mapping)
-const JOY_BTN_TRIANGLE: int = 3
+const JOY_BTN_CROSS: int = 0
 
 # How close the player needs to be to the robot to deliver
 const DELIVER_RANGE: float = 120.0
@@ -54,11 +54,11 @@ func _ready() -> void:
 	if has_node("Camera2D"):
 		$Camera2D.enabled = false
 
-	sprite.play("default_down")
+	sprite.play("default_down"+str(device_id))
 
 func _physics_process(_delta: float) -> void:
 	if game_manager and game_manager.game_over:
-		sprite.play("default_down")
+		sprite.play("default_down"+str(device_id))
 		return
 
 	_handle_movement()
@@ -100,28 +100,28 @@ func _update_spritesheet(direction: Vector2) -> void:
 		# Idle animation based on last direction travelled
 		if abs(last_direction.x) > abs(last_direction.y):
 			if last_direction.x < 0:
-				sprite.play("default_left")
+				sprite.play("default_left"+str(device_id))
 			else:
-				sprite.play("default_right")
+				sprite.play("default_right"+str(device_id))
 		elif last_direction.y < 0:
-			sprite.play("default_up")
+			sprite.play("default_up"+str(device_id))
 		else:
-			sprite.play("default_down")
+			sprite.play("default_down"+str(device_id))
 		return
 
 	# Walk animations
 	if abs(direction.x) > abs(direction.y):
 		if direction.x < 0:
-			sprite.play("walk_left")
+			sprite.play("walk_left"+str(device_id))
 		else:
-			sprite.play("walk_right")
+			sprite.play("walk_right"+str(device_id))
 	elif direction.y < 0:
-		sprite.play("walk_up")
+		sprite.play("walk_up"+str(device_id))
 	else:
-		sprite.play("walk_down")
+		sprite.play("walk_down"+str(device_id))
 
 func _handle_action() -> void:
-	var triangle_pressed: bool = Input.is_joy_button_pressed(device_id, JOY_BTN_TRIANGLE)
+	var triangle_pressed: bool = Input.is_joy_button_pressed(device_id, JOY_BTN_CROSS)
 
 	if not triangle_pressed:
 		_action_held = false
