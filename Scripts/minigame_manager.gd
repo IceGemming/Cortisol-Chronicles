@@ -157,3 +157,5 @@ func _on_game_timer_timeout() -> void:
 		
 	winner_label.visible = true
 	$CPUParticles2D.emitting = true
+	
+	GameManager.get_quiz_score(player_scores)

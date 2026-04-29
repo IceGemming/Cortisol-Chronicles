@@ -29,6 +29,8 @@ var anim_time    := 0.0
 @onready var page_label:     Label = $Canvas/Panel/PageLabel
 @onready var anim_timer:     Timer = $AnimTimer
 
+var any_b_pressed := false
+
 func _ready():
 	$Canvas/Diagram.parent = self
 	_show_page(0)
@@ -44,15 +46,34 @@ func _show_page(index: int):
 	any_pressed         = false
 
 func _process(_delta: float):
+	var a_down := false
+	var b_down := false
+
 	for i in 5:
 		if Input.is_joy_button_pressed(i, JOY_BUTTON_A):
-			if not any_pressed:
-				any_pressed = true
-				_advance()
-			return
-	any_pressed = false
+			a_down = true
+		if Input.is_joy_button_pressed(i, JOY_BUTTON_B):
+			b_down = true
+
+	# A button — advance
+	if a_down and not any_pressed:
+		any_pressed = true
+		_advance()
+	elif not a_down:
+		any_pressed = false
+
+	# B button — go back
+	if b_down and not any_b_pressed:
+		any_b_pressed = true
+		_retreat()
+	elif not b_down:
+		any_b_pressed = false
+
+	# Keyboard fallback for testing
 	if Input.is_action_just_pressed("ui_accept"):
 		_advance()
+	if Input.is_action_just_pressed("ui_cancel"):
+		_retreat()
 
 func _advance():
 	current_page += 1
@@ -60,6 +81,12 @@ func _advance():
 		get_tree().change_scene_to_file("res://game_4.tscn")
 	else:
 		_show_page(current_page)
+
+func _retreat():
+	if current_page <= 0:
+		return
+	current_page -= 1
+	_show_page(current_page)
 
 func _animate():
 	anim_time += 0.016

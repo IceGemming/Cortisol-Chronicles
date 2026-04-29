@@ -323,5 +323,6 @@ func _finish(success: bool):
 
 	result_label.text = result_text
 	result_panel.show()
+	GameManager.get_tasks_score(completed, missed, sent)
 	await get_tree().create_timer(4.0).timeout
-	get_tree().change_scene_to_file("res://ending.tscn")
+	get_tree().change_scene_to_file("res://cutscene5.tscn")

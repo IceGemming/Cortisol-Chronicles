@@ -154,6 +154,7 @@ func _check_all_done():
 
 func _finish():
 	GameManager.egg_drop_results = results
+	GameManager.get_egg_score()
 	var summary := "Results:\n"
 	for i in PLAYER_COUNT:
 		summary += "P%d: %s\n" % [i + 1, results.get(i, "failed").to_upper()]
