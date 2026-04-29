@@ -7,6 +7,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ei5hl"]
 font_size = 48
 
+[sub_resource type="Gradient" id="Gradient_oh0d0"]
+offsets = PackedFloat32Array(0, 0.2037037, 0.88271606, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.6233426, 0.4295097, 0.46487367, 1, 0.7648967, 0.79341894, 0.7682877, 1, 1, 1, 1, 1)
+
 [node name="Game3" type="Node2D" unique_id=1946020976]
 script = ExtResource("1_ei5hl")
 
@@ -38,6 +42,23 @@ offset_top = -131.0
 offset_right = -122.0
 offset_bottom = -74.0
 label_settings = SubResource("LabelSettings_ei5hl")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1571354249]
+position = Vector2(581, 383)
+emitting = false
+amount = 200
+lifetime = 3.42
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 100.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 400)
+initial_velocity_min = 400.0
+initial_velocity_max = 800.0
+angular_velocity_min = 180.0
+angular_velocity_max = 360.0
+color_initial_ramp = SubResource("Gradient_oh0d0")
 
 [connection signal="wind_changed" from="WindManager" to="." method="_on_wind_changed"]
 [connection signal="timeout" from="WindManager/WindTimer" to="WindManager" method="_on_wind_timer_timeout"]
