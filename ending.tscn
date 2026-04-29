@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dhkghlpxmlmdo"]
 
 [ext_resource type="Script" uid="uid://3kce4iurvy4n" path="res://Scoreboard.gd" id="1_fsb5k"]
+[ext_resource type="FontFile" uid="uid://ba31eceljal4c" path="res://Assets/Kenney Fonts/Fonts/Kenney Blocks.ttf" id="2_dmh3q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fsb5k"]
+font = ExtResource("2_dmh3q")
 font_size = 36
 
 [node name="Scoreboard" type="Node2D" unique_id=174204188]
@@ -44,3 +46,8 @@ layout_mode = 2
 [node name="Rows" type="VBoxContainer" parent="Canvas/Panel/VBox" unique_id=1670567256]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1829636371]
+offset_right = 1164.0
+offset_bottom = 662.0
+color = Color(0.3875034, 0.43120834, 0.8278884, 1)

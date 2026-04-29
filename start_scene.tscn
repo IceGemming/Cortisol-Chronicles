@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://l60y4r4jdt0m" path="res://Scripts/start_scene.gd" id="1_mbe3m"]
 [ext_resource type="Texture2D" uid="uid://b6p2i1icwhwwu" path="res://Assets/cursor.png" id="2_f1a2b"]
+[ext_resource type="FontFile" uid="uid://ba31eceljal4c" path="res://Assets/Kenney Fonts/Fonts/Kenney Blocks.ttf" id="2_jfucu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oq0ge"]
+font = ExtResource("2_jfucu")
 
 [node name="StartScene" type="Node2D" unique_id=770597738]
 script = ExtResource("1_mbe3m")
@@ -18,12 +22,13 @@ text = "Start
 
 [node name="Label" type="Label" parent="." unique_id=284877157]
 texture_filter = 1
-offset_left = 293.0
+offset_left = 155.0
 offset_top = 179.0
-offset_right = 438.0
-offset_bottom = 202.0
+offset_right = 375.0
+offset_bottom = 203.0
 scale = Vector2(4, 4)
 text = "Cortisol Chronicles"
+label_settings = SubResource("LabelSettings_oq0ge")
 
 [node name="CursorLayer" type="CanvasLayer" parent="." unique_id=423456789]
 

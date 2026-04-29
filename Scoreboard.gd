@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var canvas: CanvasLayer = $Canvas
 @onready var rows_container: VBoxContainer = $Canvas/Panel/VBox/Rows
+var font = load("res://Assets/Kenney Fonts/Fonts/Kenney Blocks.ttf")
 
 # Call this after the scene is ready, passing your scores dictionary
 func display_scores(scores: Dictionary) -> void:
@@ -22,6 +23,7 @@ func display_scores(scores: Dictionary) -> void:
 
 		# Rank label
 		var rank_lbl := Label.new()
+		rank_lbl.add_theme_font_override("font", font)
 		rank_lbl.text = "#%d" % (i + 1)
 		rank_lbl.custom_minimum_size = Vector2(50, 0)
 		rank_lbl.add_theme_font_size_override("font_size", 22)
@@ -36,6 +38,7 @@ func display_scores(scores: Dictionary) -> void:
 
 		# Player name label
 		var name_lbl := Label.new()
+		name_lbl.add_theme_font_override("font", font)
 		name_lbl.text = str(player)
 		name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		name_lbl.add_theme_font_size_override("font_size", 22)
@@ -44,6 +47,7 @@ func display_scores(scores: Dictionary) -> void:
 
 		# Score label
 		var score_lbl := Label.new()
+		score_lbl.add_theme_font_override("font", font)
 		score_lbl.text = str(score)
 		score_lbl.custom_minimum_size = Vector2(80, 0)
 		score_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT

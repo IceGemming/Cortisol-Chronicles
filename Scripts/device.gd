@@ -29,7 +29,8 @@ var base_y := 0.0
 # Animation
 var anim_timer := 0.0
 var anim_frame := 0
-const ANIM_FPS := 8.0   # flips between frames 8 times per second when falling
+const ANIM_FPS := 8.0
+
 var frames: Array[Texture2D] = []
 
 @onready var label: Label = $Label
@@ -38,11 +39,13 @@ var frames: Array[Texture2D] = []
 func _ready():
 	base_y = position.y
 	hover_time = player_index * 0.4
+
 	label.text = "P%d" % (player_index + 1)
 
-	# Load both frames
+	# Load frames
 	frames.append(preload("res://Assets/EDP0.png"))
 	frames.append(preload("res://Assets/EDP1.png"))
+
 	sprite.texture = frames[0]
 
 func apply_wind(direction: float):
@@ -51,8 +54,10 @@ func apply_wind(direction: float):
 func _process(delta: float):
 	if not alive or landed:
 		return
-		
+
+	# --- Animation ---
 	anim_timer += delta
+
 	if anim_timer >= 1.0 / ANIM_FPS:
 		anim_timer = 0.0
 		anim_frame = (anim_frame + 1) % frames.size()
@@ -70,8 +75,10 @@ func _process(delta: float):
 
 	# --- Player correction ---
 	var joy_x := -Input.get_joy_axis(controller_device_id, JOY_AXIS_LEFT_X)
+
 	if abs(joy_x) < 0.15:
 		joy_x = 0.0
+
 	tilt_angle -= joy_x * player_correction_strength * delta
 
 	# --- Damping ---
@@ -80,29 +87,48 @@ func _process(delta: float):
 
 	rotation_degrees = tilt_angle
 
-	label.text = "P%d  %.1f°" % [player_index + 1, abs(tilt_angle)]
+	label.text = "P%d  %.1f°" % [
+		player_index + 1,
+		abs(tilt_angle)
+	]
 
+	# --- Fail from over-tilt ---
 	if abs(tilt_angle) >= max_tilt:
 		_fail()
 		return
 
-	if falling and position.y >= ground_y:
-		_land()
+	# --- Landing check using bottom of sprite ---
+	if falling:
+		var sprite_height := sprite.texture.get_height() * sprite.scale.y * scale.y
+		var bottom_y := position.y + sprite_height / 2.0
+
+		if bottom_y >= ground_y:
+			position.y = ground_y - sprite_height / 2.0
+			_land()
 
 func _fail():
 	alive = false
+
 	modulate = Color(1, 0.3, 0.3)
+
 	label.text = "P%d  FELL!" % (player_index + 1)
-	sprite.texture = frames[0]  # freeze on frame 0
+
+	sprite.texture = frames[0]
+
 	emit_signal("device_failed", player_index)
 
 func _land():
 	landed = true
+	falling = false
 	fall_speed = 0
-	sprite.texture = frames[0]  # freeze on landing
+
+	sprite.texture = frames[0]
+
 	if position.x >= green_zone_x_min and position.x <= green_zone_x_max:
 		modulate = Color(0.3, 1, 0.4)
+
 		label.text = "P%d  SAFE!" % (player_index + 1)
+
 		emit_signal("device_survived", player_index)
 	else:
 		_fail()

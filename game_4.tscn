@@ -1,12 +1,21 @@
 [gd_scene format=3 uid="uid://f5jyml3ylmac"]
 
 [ext_resource type="Script" uid="uid://dp34qiabwqfqr" path="res://Scripts/game_4.gd" id="1_q2dym"]
+[ext_resource type="FontFile" uid="uid://ba31eceljal4c" path="res://Assets/Kenney Fonts/Fonts/Kenney Blocks.ttf" id="2_5p4t4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q2dym"]
+font = ExtResource("2_5p4t4")
 font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_5p4t4"]
+font = ExtResource("2_5p4t4")
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_2g2jg"]
+font = ExtResource("2_5p4t4")
+
+[sub_resource type="LabelSettings" id="LabelSettings_trmse"]
+font = ExtResource("2_5p4t4")
 
 [node name="Game4" type="Node2D" unique_id=1624815916]
 script = ExtResource("1_q2dym")
@@ -65,6 +74,7 @@ offset_left = -0.5
 offset_right = 0.5
 offset_bottom = 30.0
 grow_horizontal = 2
+label_settings = SubResource("LabelSettings_2g2jg")
 horizontal_alignment = 1
 
 [node name="SendButton" type="Button" parent="MainCanvas/Root" unique_id=324847298]
@@ -98,5 +108,11 @@ anchor_right = 0.994
 anchor_bottom = 1.0
 offset_right = -0.034057617
 offset_bottom = 1.0
+label_settings = SubResource("LabelSettings_trmse")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=343350465]
+offset_right = 1179.0
+offset_bottom = 673.0
+color = Color(0.19536588, 0.2880902, 0.43247548, 1)
