@@ -46,4 +46,14 @@ func get_quiz_score(player_scores):
 	for i in player_scores:
 		indv_scores[n] += player_scores[i]
 		n+=1
-	
+
+func get_robot_score(wins_a, wins_b):
+	if wins_a > wins_b:
+		indv_scores[0]+=10
+		indv_scores[1]+=10
+	elif wins_a < wins_b:
+		indv_scores[2]+=10
+		indv_scores[3]+=10
+		indv_scores[4]+=10
+	else:
+		pass

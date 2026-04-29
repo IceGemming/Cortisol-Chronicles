@@ -89,5 +89,6 @@ func _declare_match_winner(team_name: String, last_round: String) -> void:
 	game_over         = true
 	win_label.text    = last_round + "\n\n%s WINS THE MATCH!  ( %d - %d )" % [team_name, wins_a, wins_b]
 	win_label.visible = true
+	GameManager.get_robot_score(wins_a, wins_b)
 	await get_tree().create_timer(4.0).timeout
 	get_tree().change_scene_to_file("res://cutscene_2.tscn")

@@ -39,7 +39,7 @@ var last_direction: Vector2 = Vector2.DOWN
 const SCREEN_LEFT:  float = 20.0
 const SCREEN_RIGHT: float = 1260.0
 const SCREEN_TOP:   float = 20.0
-const CENTER_LINE:  float = 640.0
+const CENTER_LINE:  float = 576.0
 
 # ─────────────────────────────────────────────
 #  Node references

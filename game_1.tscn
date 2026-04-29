@@ -5,9 +5,19 @@
 [ext_resource type="Script" uid="uid://bpnx4n3dx2tre" path="res://Scripts/player.gd" id="3_3v1qc"]
 [ext_resource type="PackedScene" uid="uid://d3g8yv8ufo1lm" path="res://robot.tscn" id="4_apllh"]
 [ext_resource type="Script" uid="uid://bigkod1ttv8wf" path="res://Scripts/part_spawner.gd" id="5_m8avx"]
+[ext_resource type="FontFile" uid="uid://bdsc146ayojy0" path="res://Assets/Kenney Fonts/Fonts/Kenney Mini.ttf" id="6_ydm4t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7mycd"]
 normal = Vector2(640, 670)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3v1qc"]
+font = ExtResource("6_ydm4t")
+
+[sub_resource type="LabelSettings" id="LabelSettings_apllh"]
+font = ExtResource("6_ydm4t")
+
+[sub_resource type="LabelSettings" id="LabelSettings_m8avx"]
+font = ExtResource("6_ydm4t")
 
 [node name="Main" type="Node2D" unique_id=118046849]
 
@@ -31,6 +41,7 @@ width = 4.0
 
 [node name="Player1" parent="." unique_id=1628920843 instance=ExtResource("2_ydm4t")]
 position = Vector2(334, 545)
+scale = Vector2(2, 2)
 script = ExtResource("3_3v1qc")
 player_id = 1
 team = "A"
@@ -38,6 +49,7 @@ floor_y = 560.0
 
 [node name="Player2" parent="." unique_id=648626573 instance=ExtResource("2_ydm4t")]
 position = Vector2(389, 548)
+scale = Vector2(2, 2)
 script = ExtResource("3_3v1qc")
 player_id = 2
 team = "A"
@@ -45,6 +57,7 @@ floor_y = 560.0
 
 [node name="Player3" parent="." unique_id=184797086 instance=ExtResource("2_ydm4t")]
 position = Vector2(441, 545)
+scale = Vector2(2, 2)
 script = ExtResource("3_3v1qc")
 player_id = 3
 team = "A"
@@ -52,6 +65,7 @@ floor_y = 560.0
 
 [node name="Player4" parent="." unique_id=2071351702 instance=ExtResource("2_ydm4t")]
 position = Vector2(720, 560)
+scale = Vector2(2, 2)
 script = ExtResource("3_3v1qc")
 player_id = 4
 team = "B"
@@ -59,6 +73,7 @@ floor_y = 560.0
 
 [node name="Player5" parent="." unique_id=2068670858 instance=ExtResource("2_ydm4t")]
 position = Vector2(950, 560)
+scale = Vector2(2, 2)
 script = ExtResource("3_3v1qc")
 player_id = 5
 team = "B"
@@ -86,6 +101,7 @@ offset_bottom = 33.0
 theme_override_colors/font_color = Color(0, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
 text = "Team A:  0/15 "
+label_settings = SubResource("LabelSettings_3v1qc")
 
 [node name="LabelB" type="Label" parent="UI" unique_id=181863295]
 anchors_preset = 1
@@ -99,6 +115,7 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(1, 0.627451, 0, 1)
 theme_override_font_sizes/font_size = 28
 text = "Team B: 0/10"
+label_settings = SubResource("LabelSettings_apllh")
 
 [node name="WinLabel" type="Label" parent="UI" unique_id=1695543292]
 visible = false
@@ -116,3 +133,4 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 72
 text = "TEAM A WINS!"
+label_settings = SubResource("LabelSettings_m8avx")
