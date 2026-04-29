@@ -1,4 +1,3 @@
-class_name PlayerCharacter
 extends CharacterBody2D
 
 @export var device_id: int = 0

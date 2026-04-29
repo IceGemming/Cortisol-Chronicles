@@ -10,6 +10,11 @@ font = ExtResource("2_jfucu")
 [node name="StartScene" type="Node2D" unique_id=770597738]
 script = ExtResource("1_mbe3m")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=836561073]
+offset_right = 1177.0
+offset_bottom = 688.0
+color = Color(0.16477472, 0.40141934, 0.39212885, 1)
+
 [node name="Button" type="Button" parent="." unique_id=1204794554]
 texture_filter = 1
 offset_left = 335.0

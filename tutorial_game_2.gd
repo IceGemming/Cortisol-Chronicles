@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 func _advance() -> void:
 	current_page += 1
 	if current_page >= PAGES.size():
-		get_tree().change_scene_to_file("res://mini_game_2.tscn")
+		get_tree().change_scene_to_file("res://game_2.tscn")
 	else:
 		_show_page(current_page)
 
