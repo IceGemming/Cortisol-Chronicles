@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://cybgovfq5af61"]
+
+[ext_resource type="Script" uid="uid://cu8um6n6vr31x" path="res://tutorial_game_2.gd" id="1_ek3fp"]
+[ext_resource type="Script" uid="uid://t2v8itol2xsr" path="res://diagram2.gd" id="2_ek3fp"]
+[ext_resource type="Texture2D" uid="uid://byj7n22ffghky" path="res://Assets/boy1.png" id="3_0n8ur"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ckk4h"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_5jjj2"]
+font_size = 17
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov8li"]
+atlas = ExtResource("3_0n8ur")
+region = Rect2(288, 144, 144, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_huy4c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov8li")
+}],
+"loop": true,
+"name": &"default_down",
+"speed": 5.0
+}]
+
+[node name="TutorialGame2" type="Node2D" unique_id=1787103478]
+texture_filter = 1
+position = Vector2(0, 39)
+script = ExtResource("1_ek3fp")
+
+[node name="AnimTimer" type="Timer" parent="." unique_id=30845895]
+
+[node name="Canvas" type="CanvasLayer" parent="." unique_id=857700438]
+
+[node name="Panel" type="Panel" parent="Canvas" unique_id=781868534]
+anchors_preset = -1
+anchor_left = 0.021701388
+anchor_top = 0.03549383
+anchor_right = 0.6623264
+anchor_bottom = 0.96450615
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Canvas/Panel" unique_id=1266412973]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_ckk4h")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Body" type="Label" parent="Canvas/Panel" unique_id=218956940]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002570694
+anchor_top = 0.27102804
+anchor_right = 0.002570694
+anchor_bottom = 0.27258566
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 38.0
+offset_bottom = 24.0
+label_settings = SubResource("LabelSettings_5jjj2")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PageLabel" type="Label" parent="Canvas/Panel" unique_id=2090306176]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033419024
+anchor_top = 0.94080997
+anchor_right = 0.033419024
+anchor_bottom = 0.94080997
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 39.0
+offset_bottom = 19.0
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ContinueLabel" type="Label" parent="Canvas/Panel" unique_id=1963120079]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6966581
+anchor_top = 0.94080997
+anchor_right = 0.6966581
+anchor_bottom = 0.94080997
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 38.0
+offset_bottom = 19.0
+horizontal_alignment = 2
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Diagram" type="Node2D" parent="Canvas" unique_id=1984864752]
+position = Vector2(972, 321)
+script = ExtResource("2_ek3fp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Canvas/Diagram" unique_id=163563001]
+texture_filter = 1
+position = Vector2(0, 25)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_huy4c")
+animation = &"default_down"
