@@ -8,11 +8,11 @@ extends "res://Scripts/DialogueCutscene.gd"
 func _ready() -> void:
 	NEXT_SCENE    = "res://game_1.tscn"
 	YEAR_LABEL    = "Freshman Year"
-	YEAR_SUBTITLE = "The Orientation & Robotics Club"
+	YEAR_SUBTITLE = "The Robotics Club"
 	CHAPTER_NUM   = "1"
-	BG_TYPE       = "school_hallway"
+	BG_TYPE       = ""
 
-	BG_COLOR     = Color(0.04, 0.06, 0.18, 1.0)
+	BG_COLOR     = Color(0.04, 0.06, 0.15, 1.0) 
 	PANEL_COLOR  = Color(0.06, 0.08, 0.24, 1.0)
 	ACCENT_COLOR = Color(0.35, 0.50, 1.00, 1.0)
 
@@ -26,35 +26,35 @@ func _ready() -> void:
 	DIALOGUE = [
 		{
 			"name": "Nikunj",
-			"text": "Does this schedule actually make sense to anyone? I feel like I was just dropped into the middle of a movie without the script."
+			"text": "Yo, does this schedule even make sense? I have no idea where the robotics room is."
 		},
 		{
 			"name": "Sai",
-			"text": "I think you're holding the script for my life, actually. That's my schedule."
+			"text": "Dude, you're holding my schedule."
 		},
 		{
 			"name": "Nikunj",
-			"text": "Oh! My bad. I'm Nikunj."
+			"text": "Oh, my bad. I'm Nikunj."
 		},
 		{
 			"name": "Anish",
-			"text": "Did I hear someone say Period 2 Geometry? I'm Anish. I'm already lost."
+			"text": "Wait, you guys are going to robotics too? I'm Anish, completely lost right now."
 		},
 		{
 			"name": "Nilesh",
-			"text": "Join the club. I've been staring at this map for ten minutes and I'm pretty sure this building doesn't exist."
+			"text": "Same. I've been looking at this map on my phone for like 10 minutes. This building isn't real, trust me."
 		},
 		{
 			"name": "Nikunj",
-			"text": "Well, at least we're lost together. Look, there's a club fair today. Should we just... go?"
+			"text": "Give me the map, let me figure it out. I don't want to be too late, I remember them talking about some fun intro challenge today in the intrest meeting."
 		},
 		{
 			"name": "Anish",
-			"text": "Look at that robot. \"Monta Vista Robotics Team.\" We have no idea what we're doing, right?"
+			"text": "Wait, they split us into teams for this, right?"
 		},
 		{
 			"name": "Sai",
-			"text": "None at all. Let's do it."
+			"text": "Yeah, think so, let's just go there and figure it out."
 		},
 	]
 

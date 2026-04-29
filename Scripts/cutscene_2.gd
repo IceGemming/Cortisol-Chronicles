@@ -8,10 +8,13 @@ extends "res://Scripts/DialogueCutscene.gd"
 func _ready() -> void:
 	NEXT_SCENE    = "res://game_2.tscn"
 	YEAR_LABEL    = "Sophomore Year"
-	YEAR_SUBTITLE = "Pre-Calculus & The Surprise Diagnostic"
+	YEAR_SUBTITLE = "Pre-Calculus (The Trignometry Test)"
 	CHAPTER_NUM   = "2"
-	BG_TYPE       = "classroom"
+	
+	# Leave this empty to disable the AI image background
+	BG_TYPE       = ""
 
+	# Set the alpha (4th value) to 1.0 for a solid dark background
 	BG_COLOR     = Color(0.04, 0.10, 0.10, 1.0)
 	PANEL_COLOR  = Color(0.05, 0.13, 0.14, 1.0)
 	ACCENT_COLOR = Color(0.20, 0.85, 0.75, 1.0)
@@ -26,28 +29,28 @@ func _ready() -> void:
 	DIALOGUE = [
 		{
 			"name": "Nilesh",
-			"text": "Sophomore year! We survived the robots. Surely Pre-Calculus can't be that much harder."
+			"text": "Sophomore year, let's go. So there's no way Pre-Calc is that bad, right?"
 		},
 		{
 			"name": "Nikunj",
-			"text": "Don't jinx it, Nilesh."
+			"text": "I mean ye it's not like we took geometry last year and aren't skipping math levels."
 		},
 		{
 			"name": "Sai",
-			"text": "Wait... is she handing out a test? On day one?"
+			"text": "Wait... is she literally handing out a pop quiz right now? Out of nowhere?"
 		},
 		{
 			"name": "Anish",
-			"text": "No review? No notes? It's just us and the functions."
+			"text": "No warning? No study time?"
 		},
 		{
 			"name": "Nilesh",
-			"text": "I'm looking at question one and it's looking back at me like I've never seen a number before."
+			"text": "Stop acting like you would have used the time to study Anish"
 		},
 		{
 			"name": "Nikunj",
-			"text": "Focus. If we fail this, we fail it together. But let's try not to fail."
+			"text": "Alright, focus up. Just answer as fast as you can."
 		},
 	]
-
+	
 	super._ready()

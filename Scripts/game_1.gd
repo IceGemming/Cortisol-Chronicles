@@ -33,11 +33,10 @@ func _spawn_players() -> void:
 
 	player_template.position = spawn_positions[0]
 	player_template.name = "Player0"
+	player_template.device_id = 0
 	players.append(player_template)
-	var n = 0
+	
 	for player_index in range(1, active_player_count):
-		player_template.device_id = n
-		n+=1
 		var clone: PlayerCharacter = player_template.duplicate() as PlayerCharacter
 		if clone == null:
 			continue

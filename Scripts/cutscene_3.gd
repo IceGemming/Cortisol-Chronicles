@@ -8,7 +8,7 @@ extends "res://Scripts/DialogueCutscene.gd"
 func _ready() -> void:
 	NEXT_SCENE    = "res://game_3.tscn"
 	YEAR_LABEL    = "Junior Year"
-	YEAR_SUBTITLE = "Physics & The Egg Drop Project"
+	YEAR_SUBTITLE = "AP Physics 1 (The Egg Drop)"
 	CHAPTER_NUM   = "3"
 	BG_TYPE       = "rooftop"
 
@@ -26,27 +26,27 @@ func _ready() -> void:
 	DIALOGUE = [
 		{
 			"name": "Anish",
-			"text": "Okay, junior year. Physics. This is the big one: The Egg Drop."
+			"text": "Hey, are you guys ready for the egg drop today?"
 		},
 		{
 			"name": "Nikunj",
-			"text": "I'm going bold. High-impact absorption. If it doesn't bounce, it's over."
+			"text": "Kinda, I'm just praying my crumple zone works. If it doesn't, I am cooked."
 		},
 		{
 			"name": "Sai",
-			"text": "I'm sticking to stability. If the structure is sound, the egg stays safe."
+			"text": "I literally just wrapped mine in a whole roll of duct tape and straws."
 		},
 		{
 			"name": "Nilesh",
-			"text": "I went a little... unconventional. It's either going to be a genius move or a giant omelet on the pavement."
+			"text": "Mine looks terrible, not gonna lie. The egg is probably breaking before my vehicle touches the ground."
 		},
 		{
 			"name": "Anish",
-			"text": "I've optimized the weight-to-protection ratio. All we can do now is let go."
+			"text": "I tried to make mine as light as possible. I just hope the wind doesn't knock it over."
 		},
 		{
 			"name": "Sai",
-			"text": "Three... two... one... drop!"
+			"text": "Why are we doing the egg drop on a windy day anyways? Whatever, Let's just go to the bleachers and see what happens"
 		},
 	]
 
