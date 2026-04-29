@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dsv0rqrc3q2ps"]
+
+[ext_resource type="Script" uid="uid://b41s26t0ln8py" path="res://Scripts/game_manager.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dk26g54n7gotn" path="res://player.tscn" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://dwef82otlgnv3" path="res://Scripts/player.gd" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://d3g8yv8ufo1lm" path="res://robot.tscn" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://b1rnqu0txajhu" path="res://Scripts/part_spawner.gd" id="5_7mycd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7mycd"]
+normal = Vector2(640, 670)
+
+[node name="Main" type="Node2D" unique_id=118046849]
+script = ExtResource("1_h2yge")
+
+[node name="GameManager" type="Node" parent="." unique_id=103208102]
+script = ExtResource("1_h2yge")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=765104666]
+position = Vector2(0, 560)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1867421610]
+shape = SubResource("WorldBoundaryShape2D_7mycd")
+
+[node name="Divider" type="Line2D" parent="." unique_id=308658787]
+points = PackedVector2Array(576, 0, 576, 648)
+width = 4.0
+
+[node name="Player1" parent="." unique_id=1628920843 instance=ExtResource("2_1bvp3")]
+position = Vector2(334, 545)
+script = ExtResource("3_lquwl")
+player_id = 1
+team = "A"
+floor_y = 560.0
+
+[node name="Player2" parent="." unique_id=648626573 instance=ExtResource("2_1bvp3")]
+position = Vector2(389, 548)
+script = ExtResource("3_lquwl")
+player_id = 2
+team = "A"
+floor_y = 560.0
+
+[node name="Player3" parent="." unique_id=184797086 instance=ExtResource("2_1bvp3")]
+position = Vector2(441, 545)
+script = ExtResource("3_lquwl")
+player_id = 3
+team = "A"
+floor_y = 560.0
+
+[node name="Player4" parent="." unique_id=2071351702 instance=ExtResource("2_1bvp3")]
+position = Vector2(720, 560)
+script = ExtResource("3_lquwl")
+player_id = 4
+team = "B"
+floor_y = 560.0
+
+[node name="Player5" parent="." unique_id=2068670858 instance=ExtResource("2_1bvp3")]
+position = Vector2(950, 560)
+script = ExtResource("3_lquwl")
+player_id = 5
+team = "B"
+floor_y = 560.0
+
+[node name="RobotA" parent="." unique_id=467323509 instance=ExtResource("4_lquwl")]
+position = Vector2(80, 520)
+scale = Vector2(0.1, 0.1)
+
+[node name="RobotB" parent="." unique_id=2138940920 instance=ExtResource("4_lquwl")]
+position = Vector2(1072, 520)
+scale = Vector2(0.1, 0.1)
+team = "B"
+goal = 10
+
+[node name="PartSpawner" type="Node2D" parent="." unique_id=1586643567]
+script = ExtResource("5_7mycd")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1296475068]
+
+[node name="LabelA" type="Label" parent="UI" unique_id=951096724]
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 129.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Team A:  0/15 "
+
+[node name="LabelB" type="Label" parent="UI" unique_id=181863295]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -282.0
+offset_top = 10.0
+offset_right = -108.0
+offset_bottom = 49.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.627451, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "Team B: 0/10"
+
+[node name="WinLabel" type="Label" parent="UI" unique_id=1695543292]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -44.0
+offset_right = 250.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "TEAM A WINS!"
