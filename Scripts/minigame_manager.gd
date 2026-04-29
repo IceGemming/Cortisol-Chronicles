@@ -131,11 +131,11 @@ func _on_game_timer_timeout() -> void:
 			winners.append(id)
 			
 	if winners.size() == 1:
-		winner_label.text = "Player " + str(winners[0]) + " Wins!\nScore: " + str(highest_score)
+		winner_label.text = "Player " + str(winners[0] + 1) + " Wins!\nScore: " + str(highest_score)
 	else:
 		var tie_string = "Tie: "
 		for w in winners:
-			tie_string += "P" + str(w) + " "
+			tie_string += "P" + str(w + 1) + " "
 		winner_label.text = tie_string + "\nScore: " + str(highest_score)
 		
 	if winners.size() > 0:

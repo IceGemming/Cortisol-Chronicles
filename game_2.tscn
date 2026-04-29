@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://crroepd5df7fo"]
+[gd_scene format=3 uid="uid://bak6ptdwwdrd2"]
 
 [ext_resource type="PackedScene" uid="uid://c586m6rvess38" path="res://player_template.tscn" id="1_exnf8"]
-[ext_resource type="Script" path="res://Scripts/minigame_manager.gd" id="1_ywjam"]
+[ext_resource type="Script" uid="uid://v5j2jkv08wp8" path="res://Scripts/minigame_manager.gd" id="1_ywjam"]
 [ext_resource type="FontFile" uid="uid://de1nw6llgmsi6" path="res://Assets/Kenney Fonts/Fonts/Kenney Future Narrow.ttf" id="2_eqjhc"]
 [ext_resource type="Texture2D" uid="uid://d21gxj32f52n6" path="res://Assets/World Map/Japanese School Tileset 8x8.png" id="4_aqpc8"]
 
