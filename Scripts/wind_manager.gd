@@ -5,8 +5,8 @@ signal wind_changed(direction: float)
 
 @export var min_interval := 2.0
 @export var max_interval := 5.0
-@export var start_wind_strength := 10.0
-@export var max_wind_strength := 400.0 
+@export var start_wind_strength := 250.0
+@export var max_wind_strength := 20.0 
 
 var wind_strength := 60.0
 var last_direction := 1.0

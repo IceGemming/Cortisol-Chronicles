@@ -227,7 +227,7 @@ func _on_wind_changed(direction: float) -> void:
 
 	for device in devices:
 		if device.alive and not device.landed:
-			device.apply_wind(direction)
+			device.apply_wind(direction * (wind_manager.wind_strength / 200.0))
 
 func _spawn_landing_dust(pos: Vector2) -> void:
 	var dust = CPUParticles2D.new()
