@@ -12,12 +12,15 @@ normal = Vector2(640, 670)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3v1qc"]
 font = ExtResource("6_ydm4t")
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_apllh"]
 font = ExtResource("6_ydm4t")
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_m8avx"]
 font = ExtResource("6_ydm4t")
+font_size = 32
 
 [node name="Main" type="Node2D" unique_id=118046849]
 

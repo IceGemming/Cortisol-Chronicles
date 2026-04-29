@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://crihpvex5qnko" path="res://Assets/boy3.png" id="4_dtqjt"]
 [ext_resource type="Texture2D" uid="uid://cse42hrnvaxfi" path="res://Assets/girl1.png" id="5_5ncpa"]
 [ext_resource type="Texture2D" uid="uid://b3n2r2ykclgec" path="res://Assets/girl2.png" id="6_wi0c6"]
+[ext_resource type="FontFile" uid="uid://ba31eceljal4c" path="res://Assets/Kenney Fonts/Fonts/Kenney Blocks.ttf" id="7_dtqjt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kgrps"]
 radius = 12.0
@@ -645,3 +646,18 @@ texture_filter = 1
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_hp6x6")
 animation = &"default_down1"
+
+[node name="PlayerIndicator" type="Label" parent="." unique_id=1360295406]
+offset_left = -75.0
+offset_top = 18.0
+offset_right = 75.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0.85632056, 0, 0.28679597, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_dtqjt")
+theme_override_font_sizes/font_size = 16
+text = "P1"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

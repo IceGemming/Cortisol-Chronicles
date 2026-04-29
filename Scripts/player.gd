@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var team: String = "A"
 @export var speed: float = 250.0
 @export var deadzone: float = 0.2
+@onready var player_indicator: Label = get_node_or_null("PlayerIndicator")
 
 # device_id is derived from player_id in _ready()
 var device_id: int = 0
@@ -46,6 +47,13 @@ const CENTER_LINE:  float = 576.0
 # ─────────────────────────────────────────────
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var game_manager: Node = get_node("/root/Main/GameManager")
+var player_colors: Array[Color] = [
+	Color(1.0, 0.2, 0.2), # P1: Red
+	Color(0.2, 0.6, 1.0), # P2: Blue
+	Color(0.2, 0.8, 0.2), # P3: Green
+	Color(1.0, 0.8, 0.2), # P4: Yellow
+	Color(0.8, 0.2, 0.8)  # P5: Purple
+]
 
 func _ready() -> void:
 	device_id = player_id - 1
@@ -55,6 +63,11 @@ func _ready() -> void:
 		$Camera2D.enabled = false
 
 	sprite.play("default_down"+str(device_id))
+	
+	if player_indicator:
+		player_indicator.text = "P" + str(device_id + 1)
+		var color_index = clampi(device_id, 0, player_colors.size() - 1)
+		player_indicator.add_theme_color_override("font_color", player_colors[color_index])
 
 func _physics_process(_delta: float) -> void:
 	if game_manager and game_manager.game_over:
