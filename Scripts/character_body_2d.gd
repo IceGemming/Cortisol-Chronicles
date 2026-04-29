@@ -26,7 +26,7 @@ var player_colors: Array[Color] = [
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("minigame_manager"):
 		can_move = false
-		sprite.play("default_up")
+		sprite.play("default_up"+str(device_id))
 		
 	if feedback_pivot:
 		feedback_pivot.modulate.a = 0.0
@@ -105,21 +105,21 @@ func _update_spritesheet(direction: Vector2) -> void:
 	if direction == Vector2.ZERO:
 		if abs(last_direction.x) > abs(last_direction.y):
 			if last_direction.x < 0:
-				sprite.play("default_left")
+				sprite.play("default_left"+str(device_id))
 			else:
-				sprite.play("default_right")
+				sprite.play("default_right"+str(device_id))
 		elif last_direction.y < 0:
-			sprite.play("default_up")
+			sprite.play("default_up"+str(device_id))
 		else:
-			sprite.play("default_down")
+			sprite.play("default_down"+str(device_id))
 		return
 	
 	if abs(direction.x) > abs(direction.y):
 		if direction.x < 0:
-			sprite.play("walk_left")
+			sprite.play("walk_left"+str(device_id))
 		else:
-			sprite.play("walk_right")
+			sprite.play("walk_right"+str(device_id))
 	elif direction.y < 0:
-		sprite.play("walk_up")
+		sprite.play("walk_up"+str(device_id))
 	else:
-		sprite.play("walk_down")
+		sprite.play("walk_down"+str(device_id))
