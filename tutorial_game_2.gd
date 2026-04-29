@@ -43,7 +43,7 @@ func _show_page(index: int) -> void:
 	title_label.text    = PAGES[index][0]
 	body_label.text     = PAGES[index][1]
 	page_label.text     = "%d / %d" % [index + 1, PAGES.size()]
-	continue_label.text = "Press A to continue →" if index < PAGES.size() - 1 else "Press A to start!"
+	continue_label.text = "Press X to continue →" if index < PAGES.size() - 1 else "Press A to start!"
 	any_pressed         = false
 
 func _process(_delta: float) -> void:
