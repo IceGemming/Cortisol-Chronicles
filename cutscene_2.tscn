@@ -2,4 +2,5 @@
 
 [ext_resource type="Script" uid="uid://c1jih1xyg50tp" path="res://Scripts/cutscene_2.gd" id="1_cs2"]
 
-[node name="Cutscene2" type="Node" unique_id=1407704775]
+[node name="Cutscene2" type="Node" unique_id=1022872118]
+script = ExtResource("1_cs2")
