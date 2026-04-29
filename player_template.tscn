@@ -242,3 +242,18 @@ position = Vector2(0, -31)
 scale = Vector2(0.20338984, 0.20338982)
 sprite_frames = SubResource("SpriteFrames_84s3m")
 animation = &"Buttons"
+
+[node name="PlayerIndicator" type="Label" parent="." unique_id=87284373]
+offset_left = -75.0
+offset_top = 18.0
+offset_right = 75.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0.85632056, 0, 0.28679597, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_ktumr")
+theme_override_font_sizes/font_size = 16
+text = "P1"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

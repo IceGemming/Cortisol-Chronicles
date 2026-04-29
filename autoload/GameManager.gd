@@ -43,8 +43,6 @@ func go_to_next_scene():
 # --- Helpers ---
 func reset_all():
 	wire_score = 0
-	exam_score = 0
-	exam_total = 0
 	egg_drop_results = {}
 	tasks_completed = 0
 	tasks_missed = 0
@@ -68,7 +66,6 @@ func get_summary() -> String:
     Tasks completed: %d | Missed: %d | Sent: %s
 	""" % [
 		wire_score,
-		exam_score, exam_total,
 		get_egg_survivors(),
 		tasks_completed, tasks_missed, str(sent)
 	]
