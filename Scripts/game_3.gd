@@ -279,6 +279,7 @@ func _finish() -> void:
 	wind_particles.emitting = false
 	wind_label.hide()
 	GameManager.egg_drop_results = results
+	GameManager.get_egg_score()
 	var summary := "Results:\n"
 	for i in PLAYER_COUNT:
 		summary += "P%d: %s\n" % [i + 1, results.get(i, "failed").to_upper()]
@@ -292,3 +293,4 @@ func _finish() -> void:
 	await get_tree().create_timer(1.5).timeout
 	continue_label.show()
 	can_proceed = true
+	get_tree().change_scene_to_file("res://cutscene_4.tscn")
