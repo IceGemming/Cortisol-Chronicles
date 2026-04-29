@@ -47,14 +47,6 @@ func _show_page(index: int) -> void:
 	any_pressed         = false
 
 func _process(_delta: float) -> void:
-	for i in 5:
-		if Input.is_joy_button_pressed(i, JOY_BUTTON_A):
-			if not any_pressed:
-				any_pressed = true
-				_advance()
-			return
-	any_pressed = false
-
 	if Input.is_action_just_pressed("ui_accept"):
 		_advance()
 
@@ -64,6 +56,12 @@ func _advance() -> void:
 		get_tree().change_scene_to_file("res://mini_game_2.tscn")
 	else:
 		_show_page(current_page)
+
+func _retreat():
+	if current_page <= 0:
+		current_page = 0
+	current_page -= 1
+	_show_page(current_page)
 
 func _animate() -> void:
 	anim_time += 0.016

@@ -1,9 +1,5 @@
 [gd_scene format=3 uid="uid://f5jyml3ylmac"]
 
-[ext_resource type="Script" path="res://Scripts/game_4.gd" id="1_g4"]
-[node name="Game4" type="Node2D" unique_id=1624815916]
-script = ExtResource("1_g4")
-
 [ext_resource type="Script" uid="uid://dp34qiabwqfqr" path="res://Scripts/game_4.gd" id="1_q2dym"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q2dym"]

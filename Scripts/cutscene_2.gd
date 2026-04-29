@@ -6,7 +6,7 @@ extends "res://Scripts/DialogueCutscene.gd"
 # ─────────────────────────────────────────────
 
 func _ready() -> void:
-	NEXT_SCENE    = "res://game_2.tscn"
+	NEXT_SCENE    = "res://tutorial_game_2.tscn"
 	YEAR_LABEL    = "Sophomore Year"
 	YEAR_SUBTITLE = "Pre-Calculus (The Trignometry Test)"
 	CHAPTER_NUM   = "2"

@@ -119,7 +119,6 @@ func _on_game_timer_timeout() -> void:
 	is_active = false
 	timer.stop()
 	get_tree().call_group("players", "hide_thought_bubble")
-	print("ending")
 	var highest_score = -1
 	var winners = []
 	
@@ -159,3 +158,6 @@ func _on_game_timer_timeout() -> void:
 	$CPUParticles2D.emitting = true
 	
 	GameManager.get_quiz_score(player_scores)
+	
+	await get_tree().create_timer(4.0).timeout
+	get_tree().change_scene_to_file("res://cutscene_3.tscn")

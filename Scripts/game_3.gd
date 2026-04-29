@@ -22,7 +22,7 @@ var devices: Array = []
 var green_zones: Array = []
 var survived_count := 0
 var failed_count := 0
-var results := {}
+var results : Dictionary = {}
 
 var elapsed := 0.0
 var falling_started := false

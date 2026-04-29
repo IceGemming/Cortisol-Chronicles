@@ -4,10 +4,7 @@
 
 extends Node
 
-var indv_scores : Dictionary = {}
-
-# --- Mini-Game 1: Wire It Up ---
-var wire_score := 0          # how many wires connected before time ran out
+var indv_scores = {0:0,1:0,2:0,3:0,4:0}
 
 # --- Mini-Game 2: Function Frenzy ---
 var minigame_2_history: Array = [] # Stores array of round dictionaries
@@ -23,18 +20,16 @@ var sent := false            # whether the send button was hit
 
 # --- Helpers ---
 func reset_all():
-	wire_score = 0
 	egg_drop_results = {}
-	indv_scores = {}
+	indv_scores = {0:0,1:0,2:0,3:0,4:0}
 	tasks_completed = 0
 	tasks_missed = 0
 	sent = false
 
 func get_egg_score():
-	for key in egg_drop_results:
-		if egg_drop_results[key] == "survived":
-			indv_scores[key] += 10
-	print(indv_scores)
+	for i in egg_drop_results:
+		if egg_drop_results[i] == "survived":
+			indv_scores[i] += 10
 
 func get_tasks_score(completed, missed, sent):
 	for key in indv_scores:
@@ -42,17 +37,13 @@ func get_tasks_score(completed, missed, sent):
 		if sent == false:
 			indv_scores[key] = 0
 	
+	for i in range(5):
+		indv_scores["P"+str(i+1)] = indv_scores[i]
+		indv_scores.erase(i)
+	
 func get_quiz_score(player_scores):
-	for key in player_scores:
-		if indv_scores.has(key):
-			indv_scores[key] += player_scores[key]
-
-func print_scores() -> void:
-	print("┌─────────────────────────┐")
-	print("│       SCOREBOARD        │")
-	print("├──────────────┬──────────┤")
-	for player in indv_scores:
-		var line := "│ %-12s │ %8s │" % [player, str(indv_scores[player])]
-		print(line)
-	print("└──────────────┴──────────┘")
+	var n = 0
+	for i in player_scores:
+		indv_scores[n] += player_scores[i]
+		n+=1
 	
