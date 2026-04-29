@@ -1,0 +1,4 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://Scripts/cutscene_5.gd" id="1_cs5"]
+[node name="Cutscene5" type="Node"]
+script = ExtResource("1_cs5")
