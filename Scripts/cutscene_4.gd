@@ -8,9 +8,9 @@ extends "res://Scripts/DialogueCutscene.gd"
 func _ready() -> void:
 	NEXT_SCENE    = "res://tutorial_game_4.tscn"
 	YEAR_LABEL    = "Senior Year"
-	YEAR_SUBTITLE = "College Applications & The Finish Line"
+	YEAR_SUBTITLE = "College Applications"
 	CHAPTER_NUM   = "4"
-	BG_TYPE       = "library"
+	BG_TYPE       = ""
 
 	BG_COLOR     = Color(0.08, 0.04, 0.12, 1.0)
 	PANEL_COLOR  = Color(0.11, 0.05, 0.17, 1.0)
@@ -26,31 +26,23 @@ func _ready() -> void:
 	DIALOGUE = [
 		{
 			"name": "Nikunj",
-			"text": "I've rewritten this college essay six times. I don't even know who I am anymore."
+			"text": "I've rewritten this essay like six times. I don't even know what I'm typing anymore."
 		},
 		{
 			"name": "Sai",
-			"text": "I just spent three hours researching programs. What if I pick the wrong one?"
+			"text": "Bro I just spent three hours staring at the Activities list, The deadline is literally tonight."
 		},
 		{
 			"name": "Anish",
-			"text": "We aren't competing against each other... but it feels like we're all racing the clock."
+			"text": "We should probably not wait till 11:59 right?"
 		},
 		{
 			"name": "Nilesh",
-			"text": "Hey, pass me your draft. I'll edit yours if you check my deadlines. We've been doing this for four years — we aren't stopping the teamwork now."
+			"text": "Probably, Let's just finish these tasks and hit submit before that."
 		},
 		{
 			"name": "Nikunj",
-			"text": "You're right. One last push. Let's hit \"send\"."
-		},
-		{
-			"name": "Sai",
-			"text": "We're standing right where we met in the gym. Everything looks the same."
-		},
-		{
-			"name": "Nilesh",
-			"text": "The gym hasn't changed. But we definitely have."
+			"text": "Yeah lets go."
 		},
 	]
 

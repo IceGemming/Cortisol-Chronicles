@@ -8,9 +8,9 @@ extends "res://Scripts/DialogueCutscene.gd"
 func _ready() -> void:
 	NEXT_SCENE    = "res://ending.tscn"
 	YEAR_LABEL    = "Epilogue"
-	YEAR_SUBTITLE = "The Last Day & Moving Forward"
+	YEAR_SUBTITLE = "The End"
 	CHAPTER_NUM   = "5"
-	BG_TYPE       = "field"
+	BG_TYPE       = ""
 
 	FORCE_FORWARD_FACING = true
 	AUTO_ADVANCE_ENABLED = true
@@ -30,19 +30,28 @@ func _ready() -> void:
 
 	DIALOGUE = [
 		{
-			"text": "Each step felt like progress—finishing an essay, submitting an application, hitting “send” after weeks of work."
+			"name": "Nikunj",
+			"text": "Honestly, hitting submit on that last app was the biggest relief ever."
 		},
 		{
-			"text": "It wasn’t one big moment, but a series of small ones that built toward something bigger. And when they finally submitted their last applications, there was a quiet sense of relief. Not because everything was guaranteed, but because they had done everything they could."
+			"name": "Sai",
+			"text": "Yes, I am just happy knowing we were finally done."
 		},
 		{
-			"text": "On their last day, they passed by the same gym where it had all started. Nothing about the space had changed, but everything about them had."
+			"name": "Anish",
+			"text": "Crazy to think it all started with us bumping into each other in geometry back in freshman year."
 		},
 		{
-			"text": "What began as a small mistake—a wrong schedule—had turned into four years of shared challenges, late nights, small wins, setbacks, and growth. Now, instead of worrying about where they belonged, they were ready to move forward, wherever that might be."
+			"name": "Nilesh",
+			"text": "Four years of stressing over grades and pulling all-nighters."
 		},
 		{
-			"text": "Looking back, none of the individual moments mattered as much as the fact that they went through all of it together. And even as they stepped into something new, that was the one thing they knew would stay with them."
+			"name": "Nikunj",
+			"text": "Wherever we go next, at least we have 4 years of experiences together to look back on."
+		},
+		{
+			"name": "Anish",
+			"text": "Enough with the corny stuff, lets just leave this school"
 		},
 	]
 

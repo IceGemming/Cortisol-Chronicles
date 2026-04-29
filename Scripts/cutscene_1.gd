@@ -30,15 +30,11 @@ func _ready() -> void:
 		},
 		{
 			"name": "Sai",
-			"text": "Dude, you're holding my schedule."
-		},
-		{
-			"name": "Nikunj",
-			"text": "Oh, my bad. I'm Nikunj."
+			"text": "Dude, just figure out where we are supposed to go. We are going to be late."
 		},
 		{
 			"name": "Anish",
-			"text": "Wait, you guys are going to robotics too? I'm Anish, completely lost right now."
+			"text": "Wait, you guys are going to robotics too?  Can I tag along? I am completely lost."
 		},
 		{
 			"name": "Nilesh",

@@ -33,7 +33,7 @@ func _ready() -> void:
 		},
 		{
 			"name": "Nikunj",
-			"text": "I mean ye it's not like we took geometry last year and aren't skipping math levels."
+			"text": "I mean it's not like we took geometry last year and aren't skipping math levels."
 		},
 		{
 			"name": "Sai",
