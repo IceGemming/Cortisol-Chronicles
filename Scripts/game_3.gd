@@ -70,17 +70,19 @@ func _setup_ui() -> void:
 	var huge_font = LabelSettings.new()
 	huge_font.font = custom_font
 	huge_font.font_size = 48
-	huge_font.outline_size = 8
+	huge_font.font_color = Color(1.0, 0.9, 0.2) # Yellow color
+	huge_font.outline_size = 12
 	huge_font.outline_color = Color.BLACK
-	huge_font.shadow_size = 4
-	huge_font.shadow_color = Color(0, 0, 0, 0.6)
-	huge_font.shadow_offset = Vector2(2, 2)
+	huge_font.shadow_size = 6
+	huge_font.shadow_color = Color(0, 0, 0, 0.8)
+	huge_font.shadow_offset = Vector2(3, 3)
 	
 	var screen_size := get_viewport_rect().size
 
 	if timer_label: 
 		timer_label.label_settings = huge_font
 		timer_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		timer_label.z_index = 100
 
 	if wind_label: 
 		wind_label.label_settings = huge_font
@@ -88,15 +90,18 @@ func _setup_ui() -> void:
 		wind_label.size.x = screen_size.x
 		wind_label.position.x = 0
 		wind_label.position.y = 120
+		wind_label.z_index = 100
 
 	if result_label: 
 		var result_font = huge_font.duplicate()
 		result_font.font_size = 64
+		result_font.font_color = Color(1.0, 1.0, 1.0) # White color for results
 		result_label.label_settings = result_font
 		result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		result_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		result_label.size = screen_size
 		result_label.position = Vector2.ZERO
+		result_label.z_index = 100
 
 	continue_label = Label.new()
 	continue_label.text = "Press X to continue"
@@ -104,6 +109,7 @@ func _setup_ui() -> void:
 	continue_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	continue_label.size.x = screen_size.x
 	continue_label.position.y = screen_size.y - 80
+	continue_label.z_index = 100
 	continue_label.hide()
 	add_child(continue_label)
 
@@ -166,7 +172,7 @@ func _process(delta: float) -> void:
 		if Input.is_physical_key_pressed(KEY_X):
 			pressed_x = true
 		for i in 5:
-			if Input.is_joy_button_pressed(i, JOY_BUTTON_X):
+			if Input.is_joy_button_pressed(i, JOY_BUTTON_A):
 				pressed_x = true
 		if pressed_x:
 			get_tree().change_scene_to_file("res://cutscene_4.tscn")
@@ -196,21 +202,28 @@ func _on_wind_changed(direction: float) -> void:
 	if falling_started:
 		return
 		
-	var dir_text := "➡️ WIND RIGHT ➡️" if direction > 0 else "⬅️ WIND LEFT ⬅️"
-	wind_label.text = dir_text
-
-	wind_particles.emitting = true
-	var screen_h = get_viewport_rect().size.y
-	wind_particles.position.y = screen_h / 2
-	
 	if direction > 0:
-		wind_particles.position.x = -50
-		wind_particles.initial_velocity_min = 1000.0
-		wind_particles.initial_velocity_max = 1400.0
+		wind_label.text = "→ WIND RIGHT →"
+	elif direction < 0:
+		wind_label.text = "← WIND LEFT ←"
 	else:
-		wind_particles.position.x = screen_width + 50
-		wind_particles.initial_velocity_min = -1000.0
-		wind_particles.initial_velocity_max = -1400.0
+		wind_label.text = "- CALM -"
+
+	if direction != 0:
+		wind_particles.emitting = true
+		var screen_h = get_viewport_rect().size.y
+		wind_particles.position.y = screen_h / 2
+		
+		if direction > 0:
+			wind_particles.position.x = -50
+			wind_particles.initial_velocity_min = 1000.0
+			wind_particles.initial_velocity_max = 1400.0
+		else:
+			wind_particles.position.x = screen_width + 50
+			wind_particles.initial_velocity_min = -1000.0
+			wind_particles.initial_velocity_max = -1400.0
+	else:
+		wind_particles.emitting = false
 
 	for device in devices:
 		if device.alive and not device.landed:
