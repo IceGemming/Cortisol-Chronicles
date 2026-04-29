@@ -28,6 +28,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="ResultLabel" type="Label" parent="." unique_id=401964565]
+z_index = 1
 offset_top = 57.0
 offset_right = 40.0
 offset_bottom = 80.0
