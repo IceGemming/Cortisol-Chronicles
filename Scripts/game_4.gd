@@ -1,5 +1,16 @@
 extends Node2D
 
+@export_file("*.tscn") var next_scene_path: String = "res://cutscene_5.tscn"
+@export var auto_advance_delay: float = 0.15
+
+
+func _ready() -> void:
+	if next_scene_path.is_empty():
+		return
+
+	await get_tree().create_timer(auto_advance_delay).timeout
+	get_tree().change_scene_to_file(next_scene_path)
+
 const TOTAL_TIME := 60.0
 const SEND_UNLOCK_TIME := 50.0
 const TASK_LIFETIME := 5.0
