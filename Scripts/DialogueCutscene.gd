@@ -1,7 +1,7 @@
 extends Node
 
 # ═══════════════════════════════════════════════════════════════════════
-#  DialogueCutscene.gd  –  Shared base for all four cutscenes
+#  DialogueCutscene.gd  –  Shared base for all cutscenes
 #
 #  Features:
 #   • Character sprites displayed in the top 390px stage
@@ -28,8 +28,14 @@ var CHAPTER_COLOR    : Color = Color(0.40, 0.42, 0.60)
 var COUNTER_COLOR    : Color = Color(0.45, 0.48, 0.65)
 var HINT_COLOR       : Color = Color(0.55, 0.60, 0.80)
 
-# Override in subclass with one of: "school_hallway","classroom","rooftop","library"
+# Override in subclass with one of: "school_hallway","classroom","rooftop","library","field"
 var BG_TYPE : String = "school_hallway"
+
+var FORCE_FORWARD_FACING : bool = false
+var AUTO_ADVANCE_ENABLED : bool = false
+var AUTO_ADVANCE_HOLD_SECONDS : float = 1.15
+var MANUAL_ADVANCE_HINT_TEXT : String = "▶  Space / Enter / X  to continue"
+var AUTO_ADVANCE_HINT_TEXT   : String = ""
 
 var DIALOGUE : Array = []
 
@@ -51,6 +57,7 @@ const SPRITE_PATHS := {
 const SPRITE_REGIONS := {
 	"left": Rect2(0, 288, 144, 144),
 	"right": Rect2(144, 0, 144, 144),
+	"forward": Rect2(288, 144, 144, 144),
 }
 
 const SPRITE_DISPLAY_SIZE := Vector2(250.0, 250.0)
@@ -70,6 +77,7 @@ const SPRITE_FACING := {
 
 # Dim modulate applied to inactive speakers
 const INACTIVE_MODULATE : Color = Color(0.28, 0.28, 0.32, 0.72)
+const NEUTRAL_MODULATE  : Color = Color(0.96, 0.97, 1.00, 0.96)
 const ACTIVE_SCALE       : float = 1.06   # subtle scale-up for active speaker
 
 # ── Typewriter settings ─────────────────────────────────────────────────
@@ -108,6 +116,7 @@ var _typed_chars   : int   = 0
 var _type_timer    : float = 0.0
 var _bg_time       : float = 0.0
 var _active_speaker: String = ""
+var _line_token    : int   = 0
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -225,13 +234,14 @@ func _build_ui() -> void:
 	_canvas.add_child(_line_counter)
 
 	_hint_label          = Label.new()
-	_hint_label.text     = "▶  Space / Enter / X  to continue"
+	_hint_label.text     = _hint_text_for_current_mode()
 	_hint_label.position = Vector2(W - 370, H - 30)
 	_hint_label.size     = Vector2(360, 26)
 	_hint_label.add_theme_font_size_override("font_size", 14)
 	_hint_label.add_theme_color_override("font_color", HINT_COLOR)
 	_hint_label.modulate.a = 0.0
 	_hint_label.z_index    = 17
+	_hint_label.visible    = not _hint_label.text.is_empty()
 	_canvas.add_child(_hint_label)
 
 	# ── Fade overlay ──────────────────────────────────────────────────
@@ -251,7 +261,7 @@ func _build_sprite_stage() -> void:
 		var cx    : float  = SPRITE_STAGE_POSITIONS.get(name, W * 0.5)
 
 		var tr := TextureRect.new()
-		tr.texture        = _make_pose_texture(SPRITE_PATHS[name], SPRITE_FACING.get(name, "right"))
+		tr.texture        = _make_pose_texture(SPRITE_PATHS[name], _sprite_pose_for(name))
 		tr.expand_mode    = TextureRect.EXPAND_FIT_HEIGHT
 		tr.stretch_mode   = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		tr.custom_minimum_size = SPRITE_DISPLAY_SIZE
@@ -268,6 +278,12 @@ func _build_sprite_stage() -> void:
 	_set_all_inactive()
 
 
+func _sprite_pose_for(name: String) -> String:
+	if FORCE_FORWARD_FACING:
+		return "forward"
+	return SPRITE_FACING.get(name, "right")
+
+
 func _make_pose_texture(texture_path: String, facing: String) -> AtlasTexture:
 	var atlas := AtlasTexture.new()
 	atlas.atlas = load(texture_path) as Texture2D
@@ -282,6 +298,10 @@ func _stage_position(center_x: float, scale_value: float = 1.0, lift: float = 0.
 
 func _set_speaker(speaker: String) -> void:
 	_active_speaker = speaker
+	if speaker.is_empty() or not _sprite_nodes.has(speaker):
+		_set_all_neutral()
+		return
+
 	for name in _sprite_nodes:
 		var tr : TextureRect = _sprite_nodes[name]
 		var target_scale := 1.0
@@ -312,31 +332,60 @@ func _set_all_inactive() -> void:
 		tr.z_index  = 5
 
 
+func _set_all_neutral() -> void:
+	for name in _sprite_nodes:
+		var tr : TextureRect = _sprite_nodes[name]
+		tr.modulate = NEUTRAL_MODULATE
+		tr.scale    = Vector2(1.0, 1.0)
+		tr.position = _stage_position(_sprite_base_x.get(name, W * 0.5))
+		tr.z_index  = 6
+
+
+func _set_dialogue_layout(show_name: bool) -> void:
+	_name_label.visible = show_name
+	if show_name:
+		_dialogue_label.position.y = PANEL_Y + 56
+		_dialogue_label.size.y = H - (PANEL_Y + 80)
+	else:
+		_dialogue_label.position.y = PANEL_Y + 24
+		_dialogue_label.size.y = H - (PANEL_Y + 48)
+
+
+func _hint_text_for_current_mode() -> String:
+	if AUTO_ADVANCE_ENABLED:
+		return AUTO_ADVANCE_HINT_TEXT
+	return MANUAL_ADVANCE_HINT_TEXT
+
+
 # ═══════════════════════════════════════════════════════════════════════
 #  Typewriter
 # ═══════════════════════════════════════════════════════════════════════
 func _start_line(index: int) -> void:
 	if index >= DIALOGUE.size():
-		_can_advance = false
-		await _fade(0.0, 1.0)
-		get_tree().change_scene_to_file(NEXT_SCENE)
+		await _finish_cutscene()
 		return
 
+	_current_line = index
+	_line_token += 1
 	var entry : Dictionary = DIALOGUE[index]
+	var speaker_name := String(entry.get("name", ""))
 
-	_name_label.text = entry["name"]
-	var col : Color  = CHARACTER_COLORS.get(entry["name"], Color.WHITE)
+	_name_label.text = speaker_name
+	_set_dialogue_layout(not speaker_name.is_empty())
+	var col : Color  = CHARACTER_COLORS.get(speaker_name, Color(0.95, 0.95, 0.96))
 	_name_label.add_theme_color_override("font_color", col)
 
 	_line_counter.text = "%d / %d" % [index + 1, DIALOGUE.size()]
 
 	# Highlight active speaker
-	_set_speaker(entry["name"])
+	_set_speaker(speaker_name)
 
-	_full_text    = entry["text"]
+	_full_text    = String(entry.get("text", ""))
 	_typed_chars  = 0
 	_type_timer   = 0.0
 	_is_typing    = true
+	_hint_label.text = _hint_text_for_current_mode()
+	_hint_label.visible = not _hint_label.text.is_empty()
 	_hint_label.modulate.a = 0.0
 	_dialogue_label.text   = ""
 	set_process(true)
@@ -359,8 +408,32 @@ func _process(delta: float) -> void:
 func _finish_typing() -> void:
 	_is_typing = false
 	_dialogue_label.text   = _full_text
-	_hint_label.modulate.a = 1.0
+	_hint_label.text = _hint_text_for_current_mode()
+	_hint_label.visible = not _hint_label.text.is_empty()
+	_hint_label.modulate.a = 1.0 if _hint_label.visible else 0.0
 	set_process(false)
+
+	if AUTO_ADVANCE_ENABLED:
+		_schedule_auto_advance(_line_token)
+
+
+func _schedule_auto_advance(line_token: int) -> void:
+	await get_tree().create_timer(AUTO_ADVANCE_HOLD_SECONDS).timeout
+	if line_token != _line_token or _is_typing or not _can_advance or not is_inside_tree():
+		return
+	await _advance_line()
+
+
+func _advance_line() -> void:
+	if not _can_advance:
+		return
+
+	_can_advance = false
+	var next_index := _current_line + 1
+	_start_line(next_index)
+	if next_index < DIALOGUE.size():
+		await get_tree().create_timer(0.12).timeout
+		_can_advance = true
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -375,11 +448,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _is_typing:
 		_finish_typing()
 	else:
-		_can_advance = false
-		_current_line += 1
-		_start_line(_current_line)
-		await get_tree().create_timer(0.12).timeout
-		_can_advance = true
+		await _advance_line()
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -390,6 +459,14 @@ func _fade(from_alpha: float, to_alpha: float) -> void:
 	var tween := create_tween()
 	tween.tween_property(_fade_rect, "modulate:a", to_alpha, FADE_DURATION)
 	await tween.finished
+
+
+func _finish_cutscene() -> void:
+	_can_advance = false
+	await _fade(0.0, 1.0)
+	if NEXT_SCENE.is_empty():
+		return
+	get_tree().change_scene_to_file(NEXT_SCENE)
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -414,6 +491,7 @@ class _BgDrawer extends Node2D:
 			"classroom":      _draw_classroom()
 			"rooftop":        _draw_rooftop()
 			"library":        _draw_library()
+			"field":          _draw_field()
 
 	# ── Hallway: lockers + club fair staging ──────────────────────────
 	func _draw_hallway() -> void:
@@ -629,3 +707,62 @@ class _BgDrawer extends Node2D:
 			var alpha := 0.18 + 0.12 * sin(t * 1.2 + float(i) * 1.1)
 			draw_circle(Vector2(fx, fy), 1.5 + float(i % 3) * 0.5,
 				Color(a.r, a.g, a.b, alpha))
+
+	# ── Field: horizon + open space for the epilogue ──────────────────
+	func _draw_field() -> void:
+		var a := accent
+		var horizon_y := 214.0 + sin(t * 0.18) * 2.0
+
+		# Open sky and soft sunset glow
+		draw_rect(Rect2(0, 0, 1152, 240), Color(a.r, a.g, a.b, 0.08))
+		for ring in 4:
+			var alpha := 0.08 - ring * 0.015 + 0.01 * sin(t * 0.55)
+			draw_circle(Vector2(182, 84), 54.0 + ring * 28.0, Color(a.r, a.g, a.b, alpha))
+
+		# Distant clouds
+		for i in 5:
+			var cx := 132.0 + i * 212.0 + sin(t * 0.08 + float(i)) * 18.0
+			var cy := 72.0 + float(i % 2) * 24.0 + sin(t * 0.13 + float(i)) * 5.0
+			draw_circle(Vector2(cx, cy), 24.0, Color(1.0, 1.0, 1.0, 0.06))
+			draw_circle(Vector2(cx + 26.0, cy + 6.0), 18.0, Color(1.0, 1.0, 1.0, 0.05))
+			draw_circle(Vector2(cx - 22.0, cy + 5.0), 16.0, Color(1.0, 1.0, 1.0, 0.05))
+
+		# Horizon, distant hills, and a small gym silhouette
+		draw_line(Vector2(0, horizon_y), Vector2(1152, horizon_y), Color(a.r, a.g, a.b, 0.24), 2.0)
+		draw_polyline(PackedVector2Array([
+			Vector2(0, horizon_y + 10.0),
+			Vector2(120.0, horizon_y - 4.0),
+			Vector2(248.0, horizon_y + 12.0),
+			Vector2(394.0, horizon_y - 8.0),
+			Vector2(548.0, horizon_y + 14.0),
+			Vector2(712.0, horizon_y - 2.0),
+			Vector2(866.0, horizon_y + 10.0),
+			Vector2(1012.0, horizon_y - 6.0),
+			Vector2(1152.0, horizon_y + 8.0),
+		]), Color(a.r, a.g, a.b, 0.14), 3.0)
+		draw_rect(Rect2(804, horizon_y - 42.0, 154.0, 42.0), Color(a.r, a.g, a.b, 0.10))
+		draw_rect(Rect2(818, horizon_y - 58.0, 126.0, 16.0), Color(a.r, a.g, a.b, 0.08))
+		draw_rect(Rect2(804, horizon_y - 42.0, 154.0, 42.0), Color(a.r, a.g, a.b, 0.18), false, 1.5)
+
+		# Field bands and a simple walkway toward the horizon
+		draw_rect(Rect2(0, horizon_y, 1152, 78), Color(a.r * 0.58, a.g * 0.82, a.b * 0.56, 0.14))
+		draw_rect(Rect2(0, horizon_y + 78, 1152, 98), Color(a.r * 0.44, a.g * 0.68, a.b * 0.42, 0.18))
+		draw_line(Vector2(0, horizon_y + 82.0), Vector2(1152, horizon_y + 82.0), Color(a.r, a.g, a.b, 0.08), 1.0)
+		draw_line(Vector2(0, horizon_y + 126.0), Vector2(1152, horizon_y + 126.0), Color(a.r, a.g, a.b, 0.08), 1.0)
+		draw_polyline(PackedVector2Array([
+			Vector2(500.0, 390.0),
+			Vector2(540.0, 320.0),
+			Vector2(562.0, 270.0),
+			Vector2(576.0, horizon_y + 10.0),
+		]), Color(1.0, 1.0, 1.0, 0.08), 26.0)
+
+		# Subtle breeze through the grass
+		for i in 22:
+			var gx := 28.0 + float(i) * 52.0 + sin(t * 0.45 + float(i) * 0.7) * 8.0
+			var gy := horizon_y + 98.0 + float(i % 3) * 22.0
+			draw_line(
+				Vector2(gx, gy),
+				Vector2(gx + 10.0 + sin(t * 0.9 + float(i)) * 4.0, gy - 12.0),
+				Color(a.r, a.g, a.b, 0.18),
+				1.2
+			)
