@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://bkcu7jy7m0acm"]
+
+[ext_resource type="Script" uid="uid://bbhxlkfvyy74s" path="res://Scripts/tutorial_game_4.gd" id="1_2tqvr"]
+[ext_resource type="Script" uid="uid://bfugu8foryh2d" path="res://Scripts/diagram4.gd" id="2_56j5o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ckk4h"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_5jjj2"]
+font_size = 17
+
+[node name="TutorialGame4" type="Node2D" unique_id=1787103478]
+texture_filter = 1
+script = ExtResource("1_2tqvr")
+
+[node name="AnimTimer" type="Timer" parent="." unique_id=30845895]
+
+[node name="Canvas" type="CanvasLayer" parent="." unique_id=857700438]
+
+[node name="Panel" type="Panel" parent="Canvas" unique_id=781868534]
+anchors_preset = -1
+anchor_left = 0.017361112
+anchor_top = 0.03549383
+anchor_right = 0.6640625
+anchor_bottom = 0.95987654
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Canvas/Panel" unique_id=1266412973]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_ckk4h")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Body" type="Label" parent="Canvas/Panel" unique_id=218956940]
+layout_mode = 0
+offset_top = 175.0
+offset_right = 40.0
+offset_bottom = 199.0
+label_settings = SubResource("LabelSettings_5jjj2")
+metadata/_edit_use_anchors_ = true
+
+[node name="PageLabel" type="Label" parent="Canvas/Panel" unique_id=2090306176]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.022929937
+anchor_top = 0.9233177
+anchor_right = 0.022929937
+anchor_bottom = 0.9233177
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 47.0
+offset_bottom = 33.0
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ContinueLabel" type="Label" parent="Canvas/Panel" unique_id=1963120079]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0012738854
+anchor_top = 0.2535211
+anchor_right = 0.0012738854
+anchor_bottom = 0.2535211
+offset_left = 539.0
+offset_top = 438.0
+offset_right = 579.0
+offset_bottom = 461.0
+horizontal_alignment = 2
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Diagram" type="Node2D" parent="Canvas" unique_id=1984864752]
+position = Vector2(969, 316)
+script = ExtResource("2_56j5o")
