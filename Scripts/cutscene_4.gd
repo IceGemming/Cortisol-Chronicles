@@ -9,7 +9,7 @@ func _ready() -> void:
 	NEXT_SCENE    = "res://tutorial_game_4.tscn"
 	YEAR_LABEL    = "Senior Year"
 	YEAR_SUBTITLE = "College Applications"
-	CHAPTER_NUM   = "4"
+	CHAPTER_NUM   = "7"
 	BG_TYPE       = ""
 
 	BG_COLOR     = Color(0.08, 0.04, 0.12, 1.0)

@@ -442,13 +442,15 @@ func _advance_line() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not _can_advance:
 		return
+
 	if not (event.is_action_pressed("ui_accept") or event.is_action_pressed("x-ps5")):
 		return
 
+	# Ignore input while text is typing
 	if _is_typing:
-		_finish_typing()
-	else:
-		await _advance_line()
+		return
+
+	await _advance_line()
 
 
 # ═══════════════════════════════════════════════════════════════════════

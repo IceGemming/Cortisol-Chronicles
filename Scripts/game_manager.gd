@@ -1,6 +1,6 @@
 extends Node
 
-const ROUND_DURATION: float = 30.0
+const ROUND_DURATION: float = 45.0
 const ROUND_PAUSE:    float = 4.0
 
 var round_score_a: int   = 0
@@ -91,4 +91,4 @@ func _declare_match_winner(team_name: String, last_round: String) -> void:
 	win_label.visible = true
 	GameManager.get_robot_score(wins_a, wins_b)
 	await get_tree().create_timer(4.0).timeout
-	get_tree().change_scene_to_file("res://cutscene_2.tscn")
+	get_tree().change_scene_to_file("res://cutscene_1_end.tscn")

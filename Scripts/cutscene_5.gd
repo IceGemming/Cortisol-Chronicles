@@ -9,7 +9,7 @@ func _ready() -> void:
 	NEXT_SCENE    = "res://ending.tscn"
 	YEAR_LABEL    = "Epilogue"
 	YEAR_SUBTITLE = "The End"
-	CHAPTER_NUM   = "5"
+	CHAPTER_NUM   = "8"
 	BG_TYPE       = ""
 
 	FORCE_FORWARD_FACING = true

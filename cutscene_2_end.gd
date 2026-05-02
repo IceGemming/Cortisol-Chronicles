@@ -6,10 +6,10 @@ extends "res://Scripts/DialogueCutscene.gd"
 # ─────────────────────────────────────────────
 
 func _ready() -> void:
-	NEXT_SCENE    = "res://tutorial_game_1.tscn"
-	YEAR_LABEL    = "Freshman Year"
-	YEAR_SUBTITLE = "The Robotics Club"
-	CHAPTER_NUM   = "1"
+	NEXT_SCENE    = "res://cutscene_3.tscn"
+	YEAR_LABEL    = "Sophomore Year"
+	YEAR_SUBTITLE = "After Robotics Club"
+	CHAPTER_NUM   = "4"
 	BG_TYPE       = ""
 
 	BG_COLOR     = Color(0.04, 0.06, 0.15, 1.0) 
@@ -25,33 +25,30 @@ func _ready() -> void:
 
 	DIALOGUE = [
 		{
-			"name": "Nikunj",
-			"text": "Yo, does this schedule even make sense? I have no idea where the robotics room is."
+			"name": "Nilesh",
+			"text": "That quiz actually fried my brain."
 		},
 		{
-			"name": "Sai",
-			"text": "Dude, just figure out where we are supposed to go. We are going to be late."
+			"name": "Nikunj",
+			"text": "Tell me about it. I was writing so fast I think I actually created a new language."
 		},
 		{
 			"name": "Anish",
-			"text": "Wait, you guys are going to robotics too?  Can I tag along? I am completely lost."
+			"text": "I’m just glad we’re all in the same period. I would've lost my mind if I had to suffer through this alone."
 		},
 		{
 			"name": "Nilesh",
-			"text": "Same. I've been looking at this map on my phone for like 10 minutes. This building isn't real, trust me."
+			"text": "So Junior year next? Is it just going to be more math?"
 		},
 		{
 			"name": "Nikunj",
-			"text": "Give me the map, let me figure it out. I don't want to be too late, I remember them talking about some fun intro challenge today in the intrest meeting."
+			"text": "Worse. Physics so math + conceptual thinking"
 		},
 		{
 			"name": "Anish",
-			"text": "Wait, they split us into teams for this, right?"
-		},
-		{
-			"name": "Sai",
-			"text": "Yeah, think so, let's just go there and figure it out."
+			"text": "Atleast we get to do an egg drop, that will be fun"
 		},
 	]
 
+	
 	super._ready()

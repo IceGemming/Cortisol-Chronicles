@@ -6,9 +6,9 @@ signal wind_changed(direction: float)
 @export var min_interval := 2.0
 @export var max_interval := 5.0
 @export var start_wind_strength := 250.0
-@export var max_wind_strength := 20.0 
+@export var max_wind_strength := 60.0 
 
-var wind_strength := 60.0
+var wind_strength := 0.0
 var last_direction := 1.0
 var current_direction := 1.0
 var elapsed_time := 0.0
@@ -23,7 +23,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	elapsed_time += delta
 	var progress: float = clampf(elapsed_time / 50.0, 0.0, 1.0)
-	wind_strength = lerpf(start_wind_strength, max_wind_strength, progress)
+	wind_strength = lerpf(max_wind_strength, start_wind_strength, progress)
 
 func _on_wind_timer_timeout() -> void:
 	if randf() < 0.3:

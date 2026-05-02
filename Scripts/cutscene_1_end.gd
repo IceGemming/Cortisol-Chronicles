@@ -6,10 +6,10 @@ extends "res://Scripts/DialogueCutscene.gd"
 # ─────────────────────────────────────────────
 
 func _ready() -> void:
-	NEXT_SCENE    = "res://tutorial_game_1.tscn"
+	NEXT_SCENE    = "res://cutscene_2.tscn"
 	YEAR_LABEL    = "Freshman Year"
-	YEAR_SUBTITLE = "The Robotics Club"
-	CHAPTER_NUM   = "1"
+	YEAR_SUBTITLE = "After Robotics Club"
+	CHAPTER_NUM   = "2"
 	BG_TYPE       = ""
 
 	BG_COLOR     = Color(0.04, 0.06, 0.15, 1.0) 
@@ -26,32 +26,36 @@ func _ready() -> void:
 	DIALOGUE = [
 		{
 			"name": "Nikunj",
-			"text": "Yo, does this schedule even make sense? I have no idea where the robotics room is."
-		},
-		{
-			"name": "Sai",
-			"text": "Dude, just figure out where we are supposed to go. We are going to be late."
+			"text": "That was actually pretty close! While it was fun, I don't think robotics is for me."
 		},
 		{
 			"name": "Anish",
-			"text": "Wait, you guys are going to robotics too?  Can I tag along? I am completely lost."
+			"text": "I am kinda iffy on it too but the challenge was exciting. My team was struggling at first, but we pulled through."
 		},
 		{
 			"name": "Nilesh",
-			"text": "Same. I've been looking at this map on my phone for like 10 minutes. This building isn't real, trust me."
-		},
-		{
-			"name": "Nikunj",
-			"text": "Give me the map, let me figure it out. I don't want to be too late, I remember them talking about some fun intro challenge today in the intrest meeting."
-		},
-		{
-			"name": "Anish",
-			"text": "Wait, they split us into teams for this, right?"
+			"text": "Freshman year is already bassicly gone. If this is how fun high school is, I'm down."
 		},
 		{
 			"name": "Sai",
-			"text": "Yeah, think so, let's just go there and figure it out."
+			"text": "Don't get too comfortable, It is only harder from here."
+		},
+		{
+			"name": "Nikunj",
+			"text": "True, Sophomore year is right around the corner, and I heard Pre-Calc Honours is a nightmare."
+		},
+		{
+			"name": "Nilesh",
+			"text": "Wait you are taking it? So am I am!"
+		},
+		{
+			"name": "Sai",
+			"text": "What a conincidence! I am also taking it. "
+		},
+		{
+			"name": "Anish",
+			"text": "Me too, Hopefully we are in the same class. "
 		},
 	]
-
+	
 	super._ready()

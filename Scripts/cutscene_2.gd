@@ -9,7 +9,7 @@ func _ready() -> void:
 	NEXT_SCENE    = "res://tutorial_game_2.tscn"
 	YEAR_LABEL    = "Sophomore Year"
 	YEAR_SUBTITLE = "Pre-Calculus (The Trignometry Test)"
-	CHAPTER_NUM   = "2"
+	CHAPTER_NUM   = "3"
 	
 	# Leave this empty to disable the AI image background
 	BG_TYPE       = ""
@@ -52,5 +52,5 @@ func _ready() -> void:
 			"text": "Alright, focus up. Just answer as fast as you can."
 		},
 	]
-	
+
 	super._ready()

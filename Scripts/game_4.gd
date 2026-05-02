@@ -1,7 +1,7 @@
 extends Node2D
 
-const TOTAL_TIME := 60.0
-const SEND_UNLOCK_TIME := 50.0
+const TOTAL_TIME := 70.0
+const SEND_UNLOCK_TIME := 60.0
 const TASK_LIFETIME := 5.0
 const SPAWN_INTERVAL_START := 3.0
 const SPAWN_INTERVAL_END := 1.2

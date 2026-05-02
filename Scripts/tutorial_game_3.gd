@@ -3,7 +3,7 @@ extends Node2D
 # Pages of the tutorial, each entry is [title, body_text]
 const PAGES := [
 	[
-		"Egg Drop — How It Works",
+		"Egg Drop",
         "You and your team are dropping fragile science projects from a great height.\n\nFor the first 50 seconds your projects float in mid-air while the wind tries to knock them over.\n\nIn the final 10 seconds, they fall toward the landing zone below."
 	],
 	[

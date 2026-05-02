@@ -795,7 +795,7 @@ script = ExtResource("1_ywjam")
 [node name="Timer" type="Timer" parent="Minigame Manager" unique_id=1327284753]
 
 [node name="GameTimer" type="Timer" parent="Minigame Manager" unique_id=1205261875]
-wait_time = 60.0
+wait_time = 90.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Minigame Manager" unique_id=1623685411]
 

@@ -9,8 +9,8 @@ func _ready() -> void:
 	NEXT_SCENE    = "res://tutorial_game_3.tscn"
 	YEAR_LABEL    = "Junior Year"
 	YEAR_SUBTITLE = "AP Physics 1 (The Egg Drop)"
-	CHAPTER_NUM   = "3"
-	BG_TYPE       = "rooftop"
+	CHAPTER_NUM   = "5"
+	BG_TYPE       = ""
 
 	BG_COLOR     = Color(0.10, 0.06, 0.03, 1.0)
 	PANEL_COLOR  = Color(0.14, 0.08, 0.04, 1.0)

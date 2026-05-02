@@ -6,10 +6,10 @@ extends "res://Scripts/DialogueCutscene.gd"
 # ─────────────────────────────────────────────
 
 func _ready() -> void:
-	NEXT_SCENE    = "res://tutorial_game_1.tscn"
-	YEAR_LABEL    = "Freshman Year"
-	YEAR_SUBTITLE = "The Robotics Club"
-	CHAPTER_NUM   = "1"
+	NEXT_SCENE    = "res://cutscene_4.tscn"
+	YEAR_LABEL    = "AP Physics 1"
+	YEAR_SUBTITLE = "After Egg Drop"
+	CHAPTER_NUM   = "6"
 	BG_TYPE       = ""
 
 	BG_COLOR     = Color(0.04, 0.06, 0.15, 1.0) 
@@ -25,33 +25,30 @@ func _ready() -> void:
 
 	DIALOGUE = [
 		{
-			"name": "Nikunj",
-			"text": "Yo, does this schedule even make sense? I have no idea where the robotics room is."
+			"name": "Nilesh",
+			"text": "That egg drop was not fair, Wind just sent my thing straight into the bleachers. How am I supposed to account for that!"
 		},
 		{
-			"name": "Sai",
-			"text": "Dude, just figure out where we are supposed to go. We are going to be late."
+			"name": "Nikunj",
+			"text": "Mine wasn't any better, It was way too small and the winds just tilted it was upside down before it even got close to the ground."
 		},
 		{
 			"name": "Anish",
-			"text": "Wait, you guys are going to robotics too?  Can I tag along? I am completely lost."
+			"text": "I honestly don't know how mine survived. I guess the big styrofoam plates really carried."
+		},
+		{
+			"name": "Sai",
+			"text": "I don't think we should have done this on a windy day, But atleast most of the grade is the lab report so we are fine."
+		},
+		{
+			"name": "Nikunj",
+			"text": "True. Summer is almost year are you guys going to be locked in on College apps? We’re bassicly Seniors now."
 		},
 		{
 			"name": "Nilesh",
-			"text": "Same. I've been looking at this map on my phone for like 10 minutes. This building isn't real, trust me."
-		},
-		{
-			"name": "Nikunj",
-			"text": "Give me the map, let me figure it out. I don't want to be too late, I remember them talking about some fun intro challenge today in the intrest meeting."
-		},
-		{
-			"name": "Anish",
-			"text": "Wait, they split us into teams for this, right?"
-		},
-		{
-			"name": "Sai",
-			"text": "Yeah, think so, let's just go there and figure it out."
+			"text": "Wait, college apps already? I feel like we just got here."
 		},
 	]
-
+	
+	
 	super._ready()

@@ -77,7 +77,7 @@ func _process(_delta: float) -> void:
 				pressed_x = true
 				
 		if pressed_x:
-			get_tree().change_scene_to_file("res://cutscene_3.tscn")
+			get_tree().change_scene_to_file("res://cutscene_2_end.tscn")
 
 func start_round() -> void:
 	if game_over:

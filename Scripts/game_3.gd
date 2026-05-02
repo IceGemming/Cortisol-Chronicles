@@ -27,6 +27,11 @@ var falling_started := false
 var game_over := false
 var can_proceed := false
 
+# --- NEW MATCH TRACKING VARIABLES ---
+var matches_played: int = 1
+var total_matches: int = 2
+# ------------------------------------
+
 var screen_width: float
 var spacing: float
 var start_x: float
@@ -45,6 +50,10 @@ func _ready() -> void:
 	spacing = screen_width / (PLAYER_COUNT + 1)
 	start_x = spacing
 
+	_spawn_devices()
+	_spawn_ground_and_zones()
+
+func _spawn_devices() -> void:
 	for i in PLAYER_COUNT:
 		var device = DEVICE_SCENE.instantiate()
 		device.player_index = i
@@ -62,15 +71,13 @@ func _ready() -> void:
 		device.device_survived.connect(_on_device_survived)
 		devices.append(device)
 
-	_spawn_ground_and_zones()
-
 func _setup_ui() -> void:
 	var custom_font = load("res://Assets/Kenney Fonts/Fonts/Kenney Future.ttf")
 
 	var huge_font = LabelSettings.new()
 	huge_font.font = custom_font
 	huge_font.font_size = 48
-	huge_font.font_color = Color(1.0, 0.9, 0.2) # Yellow color
+	huge_font.font_color = Color(1.0, 0.9, 0.2)
 	huge_font.outline_size = 12
 	huge_font.outline_color = Color.BLACK
 	huge_font.shadow_size = 6
@@ -95,7 +102,7 @@ func _setup_ui() -> void:
 	if result_label: 
 		var result_font = huge_font.duplicate()
 		result_font.font_size = 64
-		result_font.font_color = Color(1.0, 1.0, 1.0) # White color for results
+		result_font.font_color = Color(1.0, 1.0, 1.0)
 		result_label.label_settings = result_font
 		result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		result_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -175,7 +182,10 @@ func _process(delta: float) -> void:
 			if Input.is_joy_button_pressed(i, JOY_BUTTON_A):
 				pressed_x = true
 		if pressed_x:
-			get_tree().change_scene_to_file("res://cutscene_4.tscn")
+			if matches_played < total_matches:
+				start_new_match()
+			else:
+				get_tree().change_scene_to_file("res://cutscene_3_end.tscn")
 		return
 
 	if game_over:
@@ -197,6 +207,44 @@ func _process(delta: float) -> void:
 	if elapsed >= TOTAL_TIME:
 		game_over = true
 		_force_end_all()
+
+func start_new_match() -> void:
+	matches_played += 1
+	wind_manager.elapsed_time = 0
+	elapsed = 0.0
+	falling_started = false
+	game_over = false
+	can_proceed = false
+	survived_count = 0
+	failed_count = 0
+	results.clear()
+	
+	result_label.text = ""
+	continue_label.hide()
+	wind_label.text = "Wind: Calm"
+	wind_label.show()
+	timer_label.modulate = Color(1, 1, 1)
+	
+	var confetti = get_node_or_null("CPUParticles2D")
+	if confetti:
+		confetti.emitting = false
+	wind_particles.emitting = false
+	
+	# Delete the old devices from the previous round
+	for d in devices:
+		if is_instance_valid(d):
+			d.queue_free()
+	devices.clear()
+	
+	# Delete the old ground/zones from the previous round
+	for g in green_zones:
+		if is_instance_valid(g):
+			g.queue_free()
+	green_zones.clear()
+	
+	# Spawn new ones
+	_spawn_devices()
+	_spawn_ground_and_zones()
 
 func _on_wind_changed(direction: float) -> void:
 	if falling_started:
@@ -227,6 +275,7 @@ func _on_wind_changed(direction: float) -> void:
 
 	for device in devices:
 		if device.alive and not device.landed:
+			print(wind_manager.wind_strength)
 			device.apply_wind(direction * (wind_manager.wind_strength / 200.0))
 
 func _spawn_landing_dust(pos: Vector2) -> void:
@@ -291,6 +340,11 @@ func _finish() -> void:
 			confetti.emitting = true
 
 	await get_tree().create_timer(1.5).timeout
+	
+	if matches_played < total_matches:
+		continue_label.text = "Press X for Round 2"
+	else:
+		continue_label.text = "Press X to continue"
+		
 	continue_label.show()
 	can_proceed = true
-	get_tree().change_scene_to_file("res://cutscene_4.tscn")

@@ -9,9 +9,9 @@ extends Node2D
 
 const PART_SCENE_PATH: String = "res://Part.tscn"
 
-const SCREEN_LEFT:  float = 60.0
-const SCREEN_RIGHT: float = 1220.0
-const CENTER_LINE:  float = 640.0
+const SCREEN_LEFT:  float = 20.0
+const SCREEN_RIGHT: float = 1150.0
+const CENTER_LINE:  float = 576.0
 
 @onready var game_manager: Node = get_node("/root/Main/GameManager")
 
